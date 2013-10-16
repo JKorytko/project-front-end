@@ -1,0 +1,21 @@
+<div class="container">
+    <h4 class="table-title">Some title</h4>
+    <table class="table table-accordion">
+        <thead>
+        <tr>
+            <th>Предмет</th>
+            <th>Группа</th>
+            <th>Семестр</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% _.each(items, function(item) { %>
+        <tr>
+            <td><%= item.subject_title %></td>
+            <td><%= item.group_name %></td>
+            <td><%= item.semester %></td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>

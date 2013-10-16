@@ -1,0 +1,20 @@
+<div class="container">
+    <table class="table table-accordion">
+        <thead>
+        <tr>
+            <th>Предмет</th>
+            <th>Кредиты</th>
+            <th>Преподаватель</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% _.each(items, function(item) { %>
+        <tr>
+            <td><a href="#" class="subject" data-id="<%= item.subject_id %>"><%= item.subject_title %></a></td>
+            <td><%= item.subject_credits %></td>
+            <td><%= item.lector_name %></td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>
