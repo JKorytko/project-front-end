@@ -1,19 +1,16 @@
 <div class="container">
-    <h4 class="table-title">Some title</h4>
     <table class="table table-zebra">
         <thead>
         <tr>
-            <th>Предмет</th>
             <th>Группа</th>
-            <th>Семестр</th>
+            <th>Специальность</th>
         </tr>
         </thead>
         <tbody>
         <% _.each(items, function(item) { %>
         <tr>
-            <td><%= item.subject_title %></td>
-            <td><%= item.group_name %></td>
-            <td><%= item.semester %></td>
+            <td><a href="#" class="group" data-id="<%= item.group_id %>"><%= item.group_name %></a></td>
+            <td>Информатика (hardcoded)</td>
         </tr>
         <% }); %>
         </tbody>

@@ -18,7 +18,7 @@ app.module('teachers.details', function(details, app) {
     details.show = function(id) {
         app.mainRegion.show(new View());
         collection.fetch({
-            url: 'http://dev.myacademy.com.ua/lectors/getLectors_detail.php?lectorId=' + id
+            url: app.mainUrl + '/lectors/getLectors_detail.php?lectorId=' + id
         });
     }
 });

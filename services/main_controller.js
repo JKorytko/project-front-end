@@ -7,15 +7,18 @@ app.module('mainRouter', function(mainRouter, app) {
         },
 
         showGroups: function() {
-            console.log('groups!');
+            app.groups.show();
+        },
+        showGroupDetails: function(id) {
+            app.groups.details.show(id);
         },
 
         //related to student
         showStudents: function() {
             app.students.show();
         },
-        showStudentsBook: function(id) {
-            app.students.recordBook.show(id);
+        showStudentsBook: function(groupId, studentId) {
+            app.students.recordBook.show(groupId, studentId);
         },
 
         //related to subject

@@ -2,7 +2,7 @@ app.module('teachers', function(teachers, app) {
     'use strict';
 
     var Collection = Backbone.Collection.extend({
-        url: 'http://dev.myacademy.com.ua/lectors/getLectors.php'
+        url: app.mainUrl + '/lectors/getLectors.php'
     });
 
     var collection = new Collection();

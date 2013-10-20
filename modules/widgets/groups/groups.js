@@ -1,14 +1,14 @@
-app.module('subjects', function(subjects, app) {
+app.module('groups', function(groups, app) {
     'use strict';
 
     var Collection = Backbone.Collection.extend({
-        url: app.mainUrl + '/subjects/getSubjects.php'
+        url: app.mainUrl + '/groups/getGroups.php'
     });
 
     var collection = new Collection();
 
     var View = Marionette.ItemView.extend({
-        template: 'modules/widgets/subjects/subjects.html',
+        template: 'modules/widgets/groups/groups.html',
 
         collection: collection,
 
@@ -17,18 +17,18 @@ app.module('subjects', function(subjects, app) {
         },
 
         events: {
-            'click a.subject': 'openSubjectDetails'
+            'click a.group': 'showGroup'
         },
 
-        openSubjectDetails: function(e) {
-            var id = $(e.target).data('id');
+        showGroup: function(e) {
+            var id = e.target.getAttribute('data-id');
 
             e.preventDefault();
-            Backbone.history.navigate('subjects/' + id, true);
+            Backbone.history.navigate('groups/' + id, true);
         }
     });
 
-    subjects.show = function() {
+    groups.show = function() {
         app.mainRegion.show(new View());
         collection.fetch();
     }

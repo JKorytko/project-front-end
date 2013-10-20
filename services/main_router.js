@@ -4,10 +4,12 @@ app.module('mainRouter', function(mainRouter) {
     mainRouter.Router = Marionette.AppRouter.extend({
         appRoutes: {
             '': 'index',
+
             'groups': 'showGroups',
+            'groups/:id': 'showGroupDetails',
 
             'students': 'showStudents',
-            'students/:id': 'showStudentsBook',
+            'students/:groupId/:studentId': 'showStudentsBook',
 
             'subjects': 'showSubjects',
             'subjects/:id': 'showSubjectDetails',

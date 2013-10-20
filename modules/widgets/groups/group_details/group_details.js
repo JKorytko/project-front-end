@@ -1,14 +1,12 @@
-app.module('students', function(students, app) {
+app.module('groups.details', function(details, app) {
     'use strict';
 
-    var Collection = Backbone.Collection.extend({
-        url: app.mainUrl + '/students/getStudents.php'
-    });
+    var Collection = Backbone.Collection.extend();
 
     var collection = new Collection();
 
     var View = Marionette.ItemView.extend({
-        template: 'modules/widgets/students/students.html',
+        template: 'modules/widgets/groups/group_details/group_details.html',
 
         collection: collection,
 
@@ -29,8 +27,10 @@ app.module('students', function(students, app) {
         }
     });
 
-    students.show = function() {
+    details.show = function(id) {
         app.mainRegion.show(new View());
-        collection.fetch();
+        collection.fetch({
+            url: app.mainUrl + '/groups/getGroups_details.php?groupId=' + id
+        });
     }
 });

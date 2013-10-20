@@ -20,7 +20,7 @@ app.module('subjects.details', function(details, app) {
     details.show = function(id) {
         app.mainRegion.show(new View());
         collection.fetch({
-            url: 'http://dev.myacademy.com.ua/subjects/getSubjects_details.php?subjectId=' + id
+            url: app.mainUrl + '/subjects/getSubjects_details.php?subjectId=' + id
         });
     }
 });

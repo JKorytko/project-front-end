@@ -1,17 +1,39 @@
 <div class="container">
     <h4 class="table-title">Some title</h4>
-    <table class="table table-accordion">
+    <table class="table table-delimited">
         <thead>
         <tr>
-            <th>Группа</th>
+            <th>Предмет</th>
+            <th>Модули</th>
+            <th>Преподаватель</th>
         </tr>
         </thead>
         <tbody>
-        <% _.each(items, function(item) { %>
-        <tr>
-            <td><%= item.group_name %></td>
-        </tr>
-        <% }); %>
+        <% var semesters = _.uniq(_.pluck(items, 'semestr')).sort();
+        for(var i = 0, l = semesters.length; i < l; i++) { %>
+            <tr class="delimiter">
+                <td colspan="3">Семестр <%= semesters[i] %></td>
+            </tr>
+            <% _.each(_.where(items, {semestr: semesters[i]}), function(item) { %>
+                <tr>
+                    <td><%= item.subjects %></td>
+                    <td>
+                        <% if(item.moduls.length > 0) { %>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                    <% _.each(item.moduls, function(module) { %>
+                                        <td title="<%= module.module_name %>"><%= module.grade %></td>
+                                    <% }); %>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        <% } %>
+                    </td>
+                    <td><%= item.lectors %></td>
+                </tr>
+            <% });
+        } %>
         </tbody>
     </table>
 </div>

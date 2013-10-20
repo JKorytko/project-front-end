@@ -1,35 +1,44 @@
-var app = new Marionette.Application(),
-    templates;
+var app = (function(window, Marionette) {
+    var app = new Marionette.Application(),
+        templates;
 
-templates = [
-    'modules/header/header.html',
-    'modules/breadcrumbs/breadcrumbs.html',
+    app.mainUrl = 'http://dev.myacademy.com.ua';
 
-    'modules/widgets/home/home.html',
+    templates = [
+        'modules/header/header.html',
+        'modules/breadcrumbs/breadcrumbs.html',
 
-    'modules/widgets/students/students.html',
-    'modules/widgets/students/students_record_book/students_record_book.html',
+        'modules/widgets/home/home.html',
 
-    'modules/widgets/subjects/subjects.html',
-    'modules/widgets/subjects/subject_details/subject_details.html',
+        'modules/widgets/groups/groups.html',
+        'modules/widgets/groups/group_details/group_details.html',
 
-    'modules/widgets/teachers/teachers.html',
-    'modules/widgets/teachers/teacher_details/teacher_details.html'
-];
+        'modules/widgets/students/students.html',
+        'modules/widgets/students/students_record_book/students_record_book.html',
 
-app.addRegions({
-    headerRegion: '#header',
-    breadcrumbsRegion: '#breadcrumbs',
-    mainRegion: '#main'
-});
+        'modules/widgets/subjects/subjects.html',
+        'modules/widgets/subjects/subject_details/subject_details.html',
 
-app.on('initialize:after', function() {
-    Backbone.history.start();
-});
+        'modules/widgets/teachers/teachers.html',
+        'modules/widgets/teachers/teacher_details/teacher_details.html'
+    ];
 
-window.onload = function() {
-    var preLoading = Marionette.TemplateCache.preloadTemplates(templates);
-    $.when(preLoading).done(function() {
-        app.start();
+    app.addRegions({
+        headerRegion: '#header',
+        breadcrumbsRegion: '#breadcrumbs',
+        mainRegion: '#main'
     });
-}
+
+    app.on('initialize:after', function() {
+        Backbone.history.start();
+    });
+
+    window.onload = function() {
+        var preLoading = Marionette.TemplateCache.preloadTemplates(templates);
+        $.when(preLoading).done(function() {
+            app.start();
+        });
+    }
+
+    return app;
+})(window, Marionette);

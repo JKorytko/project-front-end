@@ -1,12 +1,55 @@
+/* custom table */
+.table-title {
+    margin-top: 0;
+}
 
-/* Template-specific stuff
- *
- * Customizations just for the template—these are not necessary for anything
- * with disabling the responsiveness.
- */
+td, th {
+    border: none !important;
+}
 
-/* Account for fixed navbar */
+tbody {
+    border: 2px solid #E3E6E5;
+    border-top: none;
+}
 
+thead {
+    background: #428bca;
+    color: #f8f8f8;
+}
+
+th:first-child {
+    border-radius: 4px 0 0 0;
+}
+
+th:last-child {
+    border-radius: 0 4px 0 0;
+}
+/* table-delimited */
+.table-delimited>tbody>tr.delimiter {
+    background: white;
+    font-weight: bold;
+}
+
+.table-delimited>tbody>tr {
+    background: #E3E6E5;
+}
+
+.table-delimited table>tbody {
+    border: none;
+}
+
+.table-delimited table>tbody td {
+    padding: 0 10px 0 0;
+}
+
+.table-delimited table>tbody td:last-child {
+    font-weight: bold;
+}
+
+/* table-zebra */
+.table-zebra>tbody>tr:nth-child(2n+2) {
+    background: #E3E6E5;
+}
 
 /* Finesse the page header spacing */
 .page-header {

@@ -13,26 +13,18 @@ app.module('students.recordBook', function(records, app) {
         collection: collection,
 
         collectionEvents: {
-            'sync': 'someFun'
+            'sync': 'render'
         },
 
-        templateHelpers: {
-            showId: function() {}
-        },
-
-        someFun: function(a,b,c) {
-            this.templateHelpers.showId = function() {
-                return [2,3];
-            }
-            this.render();
+        agent: function(one, two, three) {
+            console.log(one, two, three)
         }
     });
 
-    records.show = function(id) {
+    records.show = function(groupId, studentId) {
         app.mainRegion.show(new View());
         collection.fetch({
-            id: id,
-            url: 'http://dev.myacademy.com.ua/students/recordbook.php?studentId=1&groupId=' + id
+            url: app.mainUrl + '/students/recordbook.php?studentId=' + studentId + '&groupId=' + groupId
         });
     }
 });
