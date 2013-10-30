@@ -13,7 +13,9 @@
         <tr>
             <td><%= item.subject_title %></td>
             <td><%= item.group_name %></td>
-            <td><%= item.semester %></td>
+            <td>
+                <a href="#" class="semester" data-id="<%= item.subject_id %>" data-group-id="<%= item.group_id %>"><%= item.semester %></a>
+            </td>
         </tr>
         <% }); %>
         </tbody>

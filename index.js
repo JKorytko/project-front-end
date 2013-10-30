@@ -18,6 +18,7 @@ var app = (function(window, Marionette) {
 
         'modules/widgets/subjects/subjects.html',
         'modules/widgets/subjects/subject_details/subject_details.html',
+        'modules/widgets/subjects/list/list.html',
 
         'modules/widgets/teachers/teachers.html',
         'modules/widgets/teachers/teacher_details/teacher_details.html'

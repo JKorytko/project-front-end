@@ -12,6 +12,19 @@ app.module('teachers.details', function(details, app) {
 
         collectionEvents: {
             'sync': 'render'
+        },
+
+        events: {
+            'click a.semester': 'openList'
+        },
+
+        openList: function(e) {
+            var $target = $(e.target),
+                id = $target.data('id'),
+                groupId = $target.data('group-id');
+
+            e.preventDefault();
+            Backbone.history.navigate('teachers/list/' + groupId + '/' + id, true);
         }
     });
 

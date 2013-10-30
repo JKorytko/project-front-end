@@ -15,7 +15,8 @@ app.module('mainRouter', function(mainRouter) {
             'subjects/:id': 'showSubjectDetails',
 
             'teachers': 'showTeachers',
-            'teachers/:id': 'showTeacherDetails'
+            'teachers/:id': 'showTeacherDetails',
+            'teachers/list/:groupId/:subjectId': 'showList'
         }
     });
 });

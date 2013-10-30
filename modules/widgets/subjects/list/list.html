@@ -1,0 +1,31 @@
+<div class="container">
+    <h4 class="table-title">Some title</h4>
+    <table class="table table-zebra list-table">
+        <thead>
+        <tr>
+            <th>Предмет</th>
+            <th>Оценки</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% console.log(items); _.each(items, function(item) { %>
+        <tr>
+            <td><%= item.name_student %></td>
+            <td>
+                <% if(item.moduls.length > 0) { %>
+                <table class="modules-table">
+                    <tbody>
+                    <tr>
+                        <% _.each(item.moduls, function(module) { %>
+                        <td title="<%= module.module_name %>"><%= module.grade || 'Н/О'%></td>
+                        <% }); %>
+                    </tr>
+                    </tbody>
+                </table>
+                <% } %>
+            </td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>

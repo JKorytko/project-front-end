@@ -35,6 +35,9 @@ app.module('mainRouter', function(mainRouter, app) {
         },
         showTeacherDetails: function(id) {
             app.teachers.details.show(id);
+        },
+        showList: function(groupId, subjectId) {
+            app.subjects.list.show(groupId, subjectId);
         }
     });
 

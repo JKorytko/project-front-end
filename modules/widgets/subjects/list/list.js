@@ -1,14 +1,14 @@
-app.module('students.recordBook', function(records, app) {
+app.module('subjects.list', function(list, app) {
     'use strict';
 
     var Collection = Backbone.Collection.extend();
 
     var collection = new Collection();
 
-    records.collection = collection;
+    list.collection = collection;
 
     var View = Marionette.ItemView.extend({
-        template: 'modules/widgets/students/students_record_book/students_record_book.html',
+        template: 'modules/widgets/subjects/list/list.html',
 
         collection: collection,
 
@@ -17,10 +17,10 @@ app.module('students.recordBook', function(records, app) {
         }
     });
 
-    records.show = function(groupId, studentId) {
+    list.show = function(groupId, subjectId) {
         app.mainRegion.show(new View());
         collection.fetch({
-            url: app.mainUrl + '/students/recordbook.php?studentId=' + studentId + '&groupId=' + groupId
+            url: app.mainUrl + '/subjects/vedomost.php?subjectId=' + subjectId + '&groupId=' + groupId
         });
     }
 });
