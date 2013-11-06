@@ -13,11 +13,22 @@ app.module('students', function(students, app) {
         collection: collection,
 
         collectionEvents: {
-            'sync': 'render'
+            'sync': 'mediator'
         },
 
         events: {
             'click a.student': 'showStudentsBook'
+        },
+
+        templateHelpers: {
+            extraProps: {
+                roleKey: 0
+            }
+        },
+
+        mediator: function(coll, response) {
+            this.templateHelpers.extraProps = response.extraProps;
+            this.render();
         },
 
         showStudentsBook: function(e) {

@@ -1,22 +1,26 @@
 <div class="container">
-    <table class="table table-zebra">
-        <thead>
-        <tr>
-            <th>Студент</th>
-            <th>Something</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% _.each(items, function(item) { %>
-        <tr>
-            <td>
-                <a href="#" class="student" data-id="<%= item.student_id %>" data-group-id="<%= item.group_id %>">
-                    <%= item.student_name %>
-                </a>
-            </td>
-            <td>Something (hardcoded)</td>
-        </tr>
-        <% }); %>
-        </tbody>
-    </table>
+    <!----- ANY USER ----->
+    <% if(extraProps.roleKey === 1) { %>
+        <h4 class="access-rights-error">У вас нет прав для просмотра этой страницы</h4>
+    <!----- TEACHER ----->
+    <% } if(extraProps.roleKey === 2) { %>
+        <table class="table table-zebra">
+            <thead>
+            <tr>
+                <th>Студент</th>
+                <th>Заметки</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(items, function(item) { %>
+            <tr>
+                <td><%= item.student_name %></td>
+                <td><%= item.student_notes %></td>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    <% } %>
+
+    <!-- <a href="#" class="student" data-id=" item.student_id " data-group-id=" item.group_id "> -->
 </div>

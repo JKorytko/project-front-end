@@ -1,18 +1,39 @@
 <div class="container">
-    <table class="table table-zebra">
-        <thead>
-        <tr>
-            <th>Группа</th>
-            <th>Специальность</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% _.each(items, function(item) { %>
-        <tr>
-            <td><a href="#" class="group" data-id="<%= item.group_id %>"><%= item.group_name %></a></td>
-            <td>Информатика (hardcoded)</td>
-        </tr>
-        <% }); %>
-        </tbody>
-    </table>
+    <!----- ANY USER ----->
+    <% if(extraProps.roleKey === 1) { %>
+        <table class="table table-zebra">
+            <thead>
+            <tr>
+                <th>Группа</th>
+                <th>Специальность</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(items, function(item) { %>
+            <tr>
+                <td><%= item.group_name %></td>
+                <td><%= item.specialty %></td>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    <!----- TEACHER ----->
+    <% } if(extraProps.roleKey === 2) { %>
+        <table class="table table-zebra">
+            <thead>
+            <tr>
+                <th>Группа</th>
+                <th>Специальность</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(items, function(item) { %>
+            <tr>
+                <td><a href="#" class="group" data-id="<%= item.group_id %>"><%= item.group_name %></a></td>
+                <td><%= item.specialty %></td>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    <% } %>
 </div>

@@ -41,7 +41,14 @@ app.module('mainRouter', function(mainRouter, app) {
         }
     });
 
-    new mainRouter.Router({
-        controller: new Controller()
+    mainRouter.controller = new Controller();
+
+    mainRouter.router = new mainRouter.Router({
+        controller: mainRouter.controller
+    });
+
+    //saving last callback to refresh widget in future
+    mainRouter.router.on('route', function(callbackName) {
+        mainRouter.currentCallbackName = callbackName;
     });
 });

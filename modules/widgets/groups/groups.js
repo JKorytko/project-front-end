@@ -13,11 +13,22 @@ app.module('groups', function(groups, app) {
         collection: collection,
 
         collectionEvents: {
-            'sync': 'render'
+            'sync': 'mediator'
+        },
+
+        templateHelpers: {
+            extraProps: {
+                roleKey: 0
+            }
         },
 
         events: {
             'click a.group': 'showGroup'
+        },
+
+        mediator: function(coll, response) {
+            this.templateHelpers.extraProps = response.extraProps;
+            this.render();
         },
 
         showGroup: function(e) {

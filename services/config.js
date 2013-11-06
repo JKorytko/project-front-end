@@ -1,5 +1,10 @@
-(function(Marionette) {
+(function(Marionette, Backbone) {
     'use strict';
+
+    //parse logic
+    Backbone.Collection.prototype.parse = function(resp, options) {
+        return resp.tableProps;
+    }
 
     //template preLoading system
     Marionette.TemplateCache.TemplateCaches = {};
@@ -47,4 +52,4 @@
     Marionette.TemplateCache.get = function(templateURL) {
         return _.template(Marionette.TemplateCache.TemplateCaches[templateURL]);
     }
-})(Marionette);
+})(Marionette, Backbone);

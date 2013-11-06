@@ -1,20 +1,45 @@
 <div class="container">
-    <table class="table table-zebra">
-        <thead>
-        <tr>
-            <th>Преподаватель</th>
-            <th>Ученая степень</th>
-            <th>Электронная почта</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% _.each(items, function(item) { %>
-        <tr>
-            <td><a href="#" class="teacher" data-id="<%= item.lector_id %>"><%= item.lector_name %></a></td>
-            <td><%= item.lector_position %></td>
-            <td><%= item.lector_email %></td>
-        </tr>
-        <% }); %>
-        </tbody>
-    </table>
+    <!----- ANY USER ----->
+    <% if(extraProps.roleKey === 1) { %>
+        <table class="table table-zebra">
+            <thead>
+            <tr>
+                <th>Преподаватель</th>
+                <th>Ученая степень</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(items, function(item) { %>
+            <tr>
+                <td><%= item.lector_name %></td>
+                <td><%= item.lector_position %></td>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    <!----- TEACHER ----->
+    <% } if(extraProps.roleKey === 2) { %>
+        <table class="table table-zebra">
+            <thead>
+            <tr>
+                <th>Преподаватель</th>
+                <th>Ученая степень</th>
+                <th>Электронная почта</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(items, function(item) { %>
+            <tr>
+                <% if(item.lector_id) { %>
+                    <td><a href="#" class="teacher" data-id="<%= item.lector_id %>"><%= item.lector_name %></a></td>
+                <% } else { %>
+                    <td><%= item.lector_name %></td>
+                <% } %>
+                <td><%= item.lector_position %></td>
+                <td><%= item.lector_email %></td>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    <% } %>
 </div>

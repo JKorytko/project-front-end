@@ -11,13 +11,27 @@ app.module('groups.details', function(details, app) {
         collection: collection,
 
         collectionEvents: {
-            'sync': 'render'
+            'sync': 'mediator'
         },
 
+        templateHelpers: {
+            extraProps: {
+                roleKey: 0
+            }
+        },
+
+        /*
         events: {
             'click a.student': 'showStudentsBook'
         },
+        */
 
+        mediator: function(coll, response) {
+            this.templateHelpers.extraProps = response.extraProps;
+            this.render();
+        }
+
+        /*
         showStudentsBook: function(e) {
             var id = e.target.getAttribute('data-id'),
                 groupId = e.target.getAttribute('data-group-id');
@@ -25,12 +39,13 @@ app.module('groups.details', function(details, app) {
             e.preventDefault();
             Backbone.history.navigate('students/' + groupId + '/' + id, true);
         }
+        */
     });
 
     details.show = function(id) {
         app.mainRegion.show(new View());
         collection.fetch({
-            url: app.mainUrl + '/groups/getGroups_details.php?groupId=' + id
+            url: app.mainUrl + '/groups/getGroupsDetails.php?groupId=' + id
         });
     }
 });

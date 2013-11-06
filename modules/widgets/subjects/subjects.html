@@ -1,20 +1,49 @@
 <div class="container">
-    <table class="table table-zebra">
-        <thead>
-        <tr>
-            <th>Предмет</th>
-            <th>Кредиты</th>
-            <th>Преподаватель</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% _.each(items, function(item) { %>
-        <tr>
-            <td><a href="#" class="subject" data-id="<%= item.subject_id %>"><%= item.subject_title %></a></td>
-            <td><%= item.subject_credits %></td>
-            <td><%= item.lector_name %></td>
-        </tr>
-        <% }); %>
-        </tbody>
-    </table>
+
+    <!----- ANY USER ----->
+    <% if(extraProps.roleKey === 1) { %>
+        <table class="table table-zebra">
+            <thead>
+            <tr>
+                <th>Предмет</th>
+                <th>Кредиты</th>
+                <th>Преподаватель</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(items, function(item) { %>
+            <tr>
+                <td><%= item.subject_title %></td>
+                <td><%= item.subject_credits %></td>
+                <td><%= item.lector_name %></td>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+
+    <!----- TEACHER ----->
+    <% } if(extraProps.roleKey === 2) { %>
+        <table class="table table-zebra">
+            <thead>
+            <tr>
+                <th>Предмет</th>
+                <th>Кредиты</th>
+                <th>Преподаватель</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(items, function(item) { %>
+            <tr>
+                <% if(item.subject_id) { %>
+                    <td><a href="#" class="subject" data-id="<%= item.subject_id %>"><%= item.subject_title %></a></td>
+                <% } else { %>
+                    <td><%= item.subject_title %></td>
+                <% } %>
+                <td><%= item.subject_credits %></td>
+                <td><%= item.lector_name %></td>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    <% } %>
 </div>

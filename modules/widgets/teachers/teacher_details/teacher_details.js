@@ -11,15 +11,27 @@ app.module('teachers.details', function(details, app) {
         collection: collection,
 
         collectionEvents: {
-            'sync': 'render'
+            'sync': 'mediator'
         },
 
         events: {
-            'click a.semester': 'openList'
+            'click tr.subject-row': 'openList'
+        },
+
+        templateHelpers: {
+            extraProps: {
+                roleKey: 0
+            }
+        },
+
+        mediator: function(coll, response) {
+            console.log(response);
+            this.templateHelpers.extraProps = response.extraProps;
+            this.render();
         },
 
         openList: function(e) {
-            var $target = $(e.target),
+            var $target = $(e.currentTarget),
                 id = $target.data('id'),
                 groupId = $target.data('group-id');
 
@@ -31,7 +43,7 @@ app.module('teachers.details', function(details, app) {
     details.show = function(id) {
         app.mainRegion.show(new View());
         collection.fetch({
-            url: app.mainUrl + '/lectors/getLectors_detail.php?lectorId=' + id
+            url: app.mainUrl + '/lectors/getLectorsDetail.php?lectorId=' + id
         });
     }
 });

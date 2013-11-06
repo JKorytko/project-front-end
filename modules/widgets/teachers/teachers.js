@@ -15,11 +15,22 @@ app.module('teachers', function(teachers, app) {
         collection: collection,
 
         collectionEvents: {
-            'sync': 'render'
+            'sync': 'mediator'
         },
 
         events: {
             'click a.teacher': 'openTeacherDetails'
+        },
+
+        templateHelpers: {
+            extraProps: {
+                roleKey: 0
+            }
+        },
+
+        mediator: function(coll, response) {
+            this.templateHelpers.extraProps = response.extraProps;
+            this.render();
         },
 
         openTeacherDetails: function(e) {

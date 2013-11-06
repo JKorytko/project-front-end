@@ -1,21 +1,27 @@
 <div class="container">
-    <h4 class="table-title">Some title</h4>
-    <table class="table table-zebra">
-        <thead>
-        <tr>
-            <th>Группа</th>
-            <th>Семестр</th>
-            <th>Преподаватель</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% _.each(items, function(item) { %>
-        <tr>
-            <td><%= item.group_name %></td>
-            <td><%= item.semester %></td>
-            <td><%= item.lector_name %></td>
-        </tr>
-        <% }); %>
-        </tbody>
-    </table>
+    <!----- ANY USER ----->
+    <% if(extraProps.roleKey === 1) { %>
+        <h4 class="access-rights-error">У вас нет прав для просмотра этой страницы</h4>
+    <!----- TEACHER ----->
+    <% } if(extraProps.roleKey === 2) { %>
+        <h4 class="table-title">Some title</h4>
+        <table class="table table-zebra">
+            <thead>
+            <tr>
+                <th>Группа</th>
+                <th>Семестр</th>
+                <th>Преподаватель</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(items, function(item) { %>
+            <tr class="subject-row" data-id="<%= item.subject_id %>" data-group-id="<%= item.group_id %>">
+                <td><%= item.group_name %></td>
+                <td><%= item.semester %></td>
+                <td><%= item.lector_name %></td>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    <% } %>
 </div>

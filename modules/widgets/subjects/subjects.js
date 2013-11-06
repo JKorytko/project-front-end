@@ -13,11 +13,22 @@ app.module('subjects', function(subjects, app) {
         collection: collection,
 
         collectionEvents: {
-            'sync': 'render'
+            'sync': 'mediator'
         },
 
         events: {
             'click a.subject': 'openSubjectDetails'
+        },
+
+        templateHelpers: {
+            extraProps: {
+                roleKey: 0
+            }
+        },
+
+        mediator: function(coll, response) {
+            this.templateHelpers.extraProps = response.extraProps;
+            this.render();
         },
 
         openSubjectDetails: function(e) {

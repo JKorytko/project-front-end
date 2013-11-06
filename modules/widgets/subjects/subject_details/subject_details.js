@@ -13,14 +13,38 @@ app.module('subjects.details', function(details, app) {
         collection: collection,
 
         collectionEvents: {
-            'sync': 'render'
+            'sync': 'mediator'
+        },
+
+        events: {
+            'click tr.subject-row': 'openList'
+        },
+
+        templateHelpers: {
+            extraProps: {
+                roleKey: 0
+            }
+        },
+
+        mediator: function(coll, response) {
+            this.templateHelpers.extraProps = response.extraProps;
+            this.render();
+        },
+
+        openList: function(e) {
+            var $target = $(e.currentTarget),
+                id = $target.data('id'),
+                groupId = $target.data('group-id');
+
+            e.preventDefault();
+            Backbone.history.navigate('subjects/list/' + groupId + '/' + id, true);
         }
     });
 
     details.show = function(id) {
         app.mainRegion.show(new View());
         collection.fetch({
-            url: app.mainUrl + '/subjects/getSubjects_details.php?subjectId=' + id
+            url: app.mainUrl + '/subjects/getSubjectsDetails.php?subjectId=' + id
         });
     }
 });

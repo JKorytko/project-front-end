@@ -6,6 +6,6 @@ app.module('breadcrumbs', function() {
     });
 
     app.on('start', function() {
-        app.breadcrumbsRegion.show(new View);
+        app.breadcrumbsRegion.show(new View());
     });
 });

@@ -13,6 +13,7 @@ app.module('mainRouter', function(mainRouter) {
 
             'subjects': 'showSubjects',
             'subjects/:id': 'showSubjectDetails',
+            'subjects/list/:groupId/:subjectId': 'showList',
 
             'teachers': 'showTeachers',
             'teachers/:id': 'showTeacherDetails',
