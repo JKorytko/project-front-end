@@ -96,12 +96,9 @@ app.module('header', function(header, app) {
         //checking user's role request
         $.ajax({
             type: 'GET',
-            dataType: 'text',
+            dataType: 'JSON',
             url: app.mainUrl + '/users/checkSession.php',
-            success: function(d) {
-                //TODO: delete this shit and set dataType to GET
-                var jsonPart = d.split('<!--')[0],
-                    data = JSON.parse(jsonPart);
+            success: function(data) {
 
                 if(data.extraProps.login) {
                     model.set({login: data.extraProps.login});

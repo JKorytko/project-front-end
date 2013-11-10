@@ -2,7 +2,8 @@ var app = (function(window, Marionette) {
     var app = new Marionette.Application(),
         templates;
 
-    app.mainUrl = 'http://cyberall.ru';
+    //app.mainUrl = 'http://cyberall.ru';
+    app.mainUrl = 'http://dev.myacademy.com.ua';
 
     templates = [
         'modules/header/header.html',
