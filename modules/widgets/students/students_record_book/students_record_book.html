@@ -1,39 +1,45 @@
 <div class="container">
-    <h4 class="table-title">Some title</h4>
-    <table class="table table-delimited">
-        <thead>
-        <tr>
-            <th>Предмет</th>
-            <th>Модули</th>
-            <th>Преподаватель</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% var semesters = _.uniq(_.pluck(items, 'semestr')).sort();
-        for(var i = 0, l = semesters.length; i < l; i++) { %>
-            <tr class="delimiter">
-                <td colspan="3">Семестр <%= semesters[i] %></td>
+    <!----- ANY USER && TEACHER----->
+    <% if(extraProps.roleKey === 1 || extraProps.roleKey === 2) { %>
+        <h4 class="access-rights-error">У вас нет прав для просмотра этой страницы</h4>
+    <!----- STUDENT or PARENT ----->
+    <% } if(extraProps.roleKey === 3) { %>
+        <h4 class="table-title">Some title</h4>
+        <table class="table table-delimited">
+            <thead>
+            <tr>
+                <th>Предмет</th>
+                <th>Модули</th>
+                <th>Преподаватель</th>
             </tr>
-            <% _.each(_.where(items, {semestr: semesters[i]}), function(item) { %>
-                <tr>
-                    <td><%= item.subjects %></td>
-                    <td>
-                        <% if(item.moduls.length > 0) { %>
-                            <table class="modules-table">
-                                <tbody>
-                                    <tr>
-                                    <% _.each(item.moduls, function(module) { %>
-                                        <td title="<%= module.module_name %>"><%= module.grade %></td>
-                                    <% }); %>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        <% } %>
-                    </td>
-                    <td><%= item.lectors %></td>
+            </thead>
+            <tbody>
+            <% var semesters = _.uniq(_.pluck(items, 'semestr')).sort();
+            for(var i = 0, l = semesters.length; i < l; i++) { %>
+                <tr class="delimiter">
+                    <td colspan="3">Семестр <%= semesters[i] %></td>
                 </tr>
-            <% });
-        } %>
-        </tbody>
-    </table>
+                <% _.each(_.where(items, {semestr: semesters[i]}), function(item) { %>
+                    <tr>
+                        <td><%= item.subjects %></td>
+                        <td>
+                            <% if(item.moduls.length > 0) { %>
+                                <table class="modules-table">
+                                    <tbody>
+                                        <tr>
+                                        <% _.each(item.moduls, function(module) { %>
+                                            <td title="<%= module.module_name %>"><%= module.grade %></td>
+                                        <% }); %>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            <% } %>
+                        </td>
+                        <td><%= item.lectors %></td>
+                    </tr>
+                <% });
+            } %>
+            </tbody>
+        </table>
+    <% } %>
 </div>

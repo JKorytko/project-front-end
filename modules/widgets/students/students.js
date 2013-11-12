@@ -35,6 +35,7 @@ app.module('students', function(students, app) {
             var id = e.target.getAttribute('data-id'),
                 groupId = e.target.getAttribute('data-group-id');
 
+            console.log(groupId, id)
             e.preventDefault();
             Backbone.history.navigate('students/' + groupId + '/' + id, true);
         }

@@ -1,6 +1,6 @@
 <div class="container">
-    <!----- ANY USER ----->
-    <% if(extraProps.roleKey === 1) { %>
+    <!----- ANY USER && STUDENT or PARENT----->
+    <% if(extraProps.roleKey === 1 || extraProps.roleKey === 3) { %>
         <h4 class="access-rights-error">У вас нет прав для просмотра этой страницы</h4>
     <!----- TEACHER ----->
     <% } if(extraProps.roleKey === 2) { %>

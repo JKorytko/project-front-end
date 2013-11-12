@@ -20,7 +20,29 @@
             <% }); %>
             </tbody>
         </table>
+    <!----- STUDENT or PARENT ----->
+    <% } if(extraProps.roleKey === 3) { %>
+    <table class="table table-zebra">
+        <thead>
+        <tr>
+            <th>Студент</th>
+            <th>Заметки</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% _.each(items, function(item) { %>
+        <tr>
+            <% if(item.id_student) { %>
+                <td>
+                    <a href="#" class="student" data-id="<%= item.id_student %>" data-group-id="<%= item.group_id %>"><%= item.student_name %></a>
+                </td>
+            <% } else { %>
+                <td><%= item.student_name %></td>
+            <% } %>
+            <td><%= item.student_notes %></td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
     <% } %>
-
-    <!-- <a href="#" class="student" data-id=" item.student_id " data-group-id=" item.group_id "> -->
 </div>

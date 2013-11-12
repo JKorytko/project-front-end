@@ -13,7 +13,18 @@ app.module('students.recordBook', function(records, app) {
         collection: collection,
 
         collectionEvents: {
-            'sync': 'render'
+            'sync': 'mediator'
+        },
+
+        templateHelpers: {
+            extraProps: {
+                roleKey: 0
+            }
+        },
+
+        mediator: function(coll, response) {
+            this.templateHelpers.extraProps = response.extraProps;
+            this.render();
         }
     });
 

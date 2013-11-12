@@ -20,26 +20,23 @@ app.module('groups.details', function(details, app) {
             }
         },
 
-        /*
         events: {
             'click a.student': 'showStudentsBook'
         },
-        */
 
         mediator: function(coll, response) {
             this.templateHelpers.extraProps = response.extraProps;
             this.render();
-        }
+        },
 
-        /*
         showStudentsBook: function(e) {
             var id = e.target.getAttribute('data-id'),
                 groupId = e.target.getAttribute('data-group-id');
 
+            console.log(groupId, id);
             e.preventDefault();
             Backbone.history.navigate('students/' + groupId + '/' + id, true);
         }
-        */
     });
 
     details.show = function(id) {

@@ -1,6 +1,6 @@
 <div class="container">
-    <!----- ANY USER ----->
-    <% if(extraProps.roleKey === 1) { %>
+    <!----- ANY USER && STUDENT or PARENT----->
+    <% if(extraProps.roleKey === 1 || extraProps.roleKey === 3) { %>
         <table class="table table-zebra">
             <thead>
             <tr>

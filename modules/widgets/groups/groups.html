@@ -35,5 +35,27 @@
             <% }); %>
             </tbody>
         </table>
+    <!----- STUDENT or PARENT ----->
+    <% } if(extraProps.roleKey === 3) { %>
+    <table class="table table-zebra">
+        <thead>
+        <tr>
+            <th>Группа</th>
+            <th>Специальность</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% _.each(items, function(item) { %>
+        <tr>
+            <% if(item.group_id) { %>
+                <td><a href="#" class="group" data-id="<%= item.group_id %>"><%= item.group_name %></a></td>
+            <% } else { %>
+                <td><%= item.group_name %></td>
+            <% } %>
+            <td><%= item.specialty %></td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
     <% } %>
 </div>
