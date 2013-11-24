@@ -1,16 +1,14 @@
 <div class="container">
-
-    <!----- ANY USER && STUDENT or PARENT----->
     <% if(extraProps.roleKey === 1 || extraProps.roleKey === 3) { %>
+    <!----- ANY USER && STUDENT or PARENT----->
         <h4 class="access-rights-error">У вас нет прав для просмотра этой страницы</h4>
-
-    <!----- TEACHER ----->
     <% } if(extraProps.roleKey === 2) { %>
+    <!----- TEACHER ----->
         <h4 class="table-title">Some title</h4>
         <table class="table table-zebra list-table">
             <thead>
             <tr>
-                <th>Предмет</th>
+                <th><span class="sorting" data-sort-key="name_student">Студент</span></th>
                 <th>Оценки</th>
             </tr>
             </thead>

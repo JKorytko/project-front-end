@@ -1,15 +1,14 @@
 <div class="container">
-    <!----- ANY USER ----->
     <% if(extraProps.roleKey === 1) { %>
+    <!----- ANY USER ----->
         <h4 class="access-rights-error">У вас нет прав для просмотра этой страницы</h4>
-    <!----- TEACHER ----->
     <% } if(extraProps.roleKey === 2) { %>
+    <!----- TEACHER ----->
         <table class="table table-zebra">
             <thead>
             <tr>
-                <th>Студент</th>
+                <th><span class="sorting" data-sort-key="student_name">Студент</span></th>
                 <th>Группа</th>
-                <th>Заметки</th>
             </tr>
             </thead>
             <tbody>
@@ -17,19 +16,17 @@
             <tr>
                 <td><%= item.student_name %></td>
                 <td><%= item.group_name %></td>
-                <td><%= item.student_notes %></td>
             </tr>
             <% }); %>
             </tbody>
         </table>
-    <!----- STUDENT or PARENT ----->
     <% } if(extraProps.roleKey === 3) { %>
+    <!----- STUDENT or PARENT ----->
         <table class="table table-zebra">
             <thead>
             <tr>
-                <th>Студент</th>
+                <th><span class="sorting" data-sort-key="student_name">Студент</span></th>
                 <th>Группа</th>
-                <th>Заметки</th>
             </tr>
             </thead>
             <tbody>
@@ -43,12 +40,9 @@
                     <td><%= item.student_name %></td>
                 <% } %>
                 <td><%= item.group_name %></td>
-                <td><%= item.student_notes %></td>
             </tr>
             <% }); %>
             </tbody>
         </table>
     <% } %>
-
-    <!--  -->
 </div>

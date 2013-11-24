@@ -1,34 +1,19 @@
 app.module('subjects.details', function(details, app) {
     'use strict';
 
-    var Collection = Backbone.Collection.extend();
+    var Collection = Backbone.CustomCollection.extend({
+        comparator: null
+    });
 
     var collection = new Collection();
 
-    details.collection = collection;
-
-    var View = Marionette.ItemView.extend({
+    var View = Marionette.CustomView.extend({
         template: 'modules/widgets/subjects/subject_details/subject_details.html',
 
         collection: collection,
 
-        collectionEvents: {
-            'sync': 'mediator'
-        },
-
         events: {
             'click tr.subject-row': 'openList'
-        },
-
-        templateHelpers: {
-            extraProps: {
-                roleKey: 0
-            }
-        },
-
-        mediator: function(coll, response) {
-            this.templateHelpers.extraProps = response.extraProps;
-            this.render();
         },
 
         openList: function(e) {

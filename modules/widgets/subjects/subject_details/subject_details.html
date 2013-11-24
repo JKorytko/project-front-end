@@ -1,10 +1,9 @@
 <div class="container">
-    <!----- ANY USER && STUDENT or PARENT----->
     <% if(extraProps.roleKey === 1 || extraProps.roleKey === 3) { %>
+    <!----- ANY USER && STUDENT or PARENT----->
         <h4 class="access-rights-error">У вас нет прав для просмотра этой страницы</h4>
-    <!----- TEACHER ----->
     <% } if(extraProps.roleKey === 2) { %>
-        <h4 class="table-title">Some title</h4>
+    <!----- TEACHER ----->
         <table class="table table-zebra">
             <thead>
             <tr>

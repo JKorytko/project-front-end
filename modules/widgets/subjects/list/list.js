@@ -1,31 +1,19 @@
 app.module('subjects.list', function(list, app) {
     'use strict';
 
-    var Collection = Backbone.Collection.extend();
+    var Collection = Backbone.CustomCollection.extend({
+        sortingProps: {
+            sortKey: 'name_student',
+            order: -1
+        }
+    });
 
     var collection = new Collection();
 
-    list.collection = collection;
-
-    var View = Marionette.ItemView.extend({
+    var View = Marionette.CustomView.extend({
         template: 'modules/widgets/subjects/list/list.html',
 
-        collection: collection,
-
-        collectionEvents: {
-            'sync': 'mediator'
-        },
-
-        templateHelpers: {
-            extraProps: {
-                roleKey: 0
-            }
-        },
-
-        mediator: function(coll, response) {
-            this.templateHelpers.extraProps = response.extraProps;
-            this.render();
-        }
+        collection: collection
     });
 
     list.show = function(groupId, subjectId) {

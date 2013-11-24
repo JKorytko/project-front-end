@@ -1,11 +1,37 @@
+html {
+    height: 101%;
+}
+
 #login-label {
     color: #777777;
     font-size: 15px;
     margin-right: 40px;
 }
 
-tr.subject-row:hover {
+tr.subject-row {
     cursor: pointer;
+}
+/* sorting */
+.sorting {
+    position: relative;
+    cursor: pointer;
+}
+.sorting:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 4px;
+    right: -15px;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+}
+.sorting.asc:after {
+    border-top: 8px solid #ffffff;
+}
+.sorting.desc:after {
+    border-bottom: 8px solid #ffffff;
 }
 /* list table */
 .list-table table.modules-table>tbody td {

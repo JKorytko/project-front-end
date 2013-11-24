@@ -1,14 +1,14 @@
 <div class="container">
-    <!----- ANY USER ----->
     <% if(extraProps.roleKey === 1) { %>
+    <!----- ANY USER ----->
         <h4 class="access-rights-error">У вас нет прав для просмотра этой страницы</h4>
-    <!----- TEACHER ----->
     <% } if(extraProps.roleKey === 2) { %>
+    <!----- TEACHER ----->
         <table class="table table-zebra">
             <thead>
             <tr>
-                <th>Студент</th>
-                <th>Заметки</th>
+                <th><span class="sorting" data-sort-key="student_name">Студент</span></th>
+                <th><span class="sorting" data-sort-key="student_notes">Заметки</span></th>
             </tr>
             </thead>
             <tbody>
@@ -20,13 +20,13 @@
             <% }); %>
             </tbody>
         </table>
-    <!----- STUDENT or PARENT ----->
     <% } if(extraProps.roleKey === 3) { %>
+    <!----- STUDENT or PARENT ----->
     <table class="table table-zebra">
         <thead>
         <tr>
-            <th>Студент</th>
-            <th>Заметки</th>
+            <th><span class="sorting" data-sort-key="student_name">Студент</span></th>
+            <th><span class="sorting" data-sort-key="student_notes">Заметки</span></th>
         </tr>
         </thead>
         <tbody>

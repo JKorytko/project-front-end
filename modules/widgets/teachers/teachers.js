@@ -1,36 +1,23 @@
 app.module('teachers', function(teachers, app) {
     'use strict';
 
-    var Collection = Backbone.Collection.extend({
-        url: app.mainUrl + '/lectors/getLectors.php'
+    var Collection = Backbone.CustomCollection.extend({
+        url: app.mainUrl + '/lectors/getLectors.php',
+        sortingProps: {
+            sortKey: 'lector_name',
+            order: -1
+        }
     });
 
     var collection = new Collection();
 
-    teachers.collection = collection;
-
-    var View = Marionette.ItemView.extend({
+    var View = Marionette.CustomView.extend({
         template: 'modules/widgets/teachers/teachers.html',
 
         collection: collection,
 
-        collectionEvents: {
-            'sync': 'mediator'
-        },
-
         events: {
             'click a.teacher': 'openTeacherDetails'
-        },
-
-        templateHelpers: {
-            extraProps: {
-                roleKey: 0
-            }
-        },
-
-        mediator: function(coll, response) {
-            this.templateHelpers.extraProps = response.extraProps;
-            this.render();
         },
 
         openTeacherDetails: function(e) {

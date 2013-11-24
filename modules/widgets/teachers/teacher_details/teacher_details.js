@@ -1,42 +1,33 @@
 app.module('teachers.details', function(details, app) {
     'use strict';
 
-    var Collection = Backbone.Collection.extend();
+    var Collection = Backbone.CustomCollection.extend({
+        url: app.mainUrl + '/lectors/getLectors.php',
+        sortingProps: {
+            sortKey: 'subject_title',
+            order: -1
+        }
+    });
 
     var collection = new Collection();
 
-    var View = Marionette.ItemView.extend({
+    var View = Marionette.CustomView.extend({
         template: 'modules/widgets/teachers/teacher_details/teacher_details.html',
 
         collection: collection,
-
-        collectionEvents: {
-            'sync': 'mediator'
-        },
 
         events: {
             'click tr.subject-row': 'openList'
         },
 
-        templateHelpers: {
-            extraProps: {
-                roleKey: 0
-            }
-        },
-
-        mediator: function(coll, response) {
-            console.log(response);
-            this.templateHelpers.extraProps = response.extraProps;
-            this.render();
-        },
-
         openList: function(e) {
             var $target = $(e.currentTarget),
                 id = $target.data('id'),
-                groupId = $target.data('group-id');
+                groupId = $target.data('group-id'),
+                teacherId = $target.data('lector-id');
 
             e.preventDefault();
-            Backbone.history.navigate('teachers/list/' + groupId + '/' + id, true);
+            Backbone.history.navigate('teachers/' + teacherId + '/list/' + groupId + '/' + id, true);
         }
     });
 

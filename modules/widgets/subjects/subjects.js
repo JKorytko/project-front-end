@@ -1,34 +1,23 @@
 app.module('subjects', function(subjects, app) {
     'use strict';
 
-    var Collection = Backbone.Collection.extend({
-        url: app.mainUrl + '/subjects/getSubjects.php'
+    var Collection = Backbone.CustomCollection.extend({
+        url: app.mainUrl + '/subjects/getSubjects.php',
+        sortingProps: {
+            sortKey: 'subject_title',
+            order: -1
+        }
     });
 
     var collection = new Collection();
 
-    var View = Marionette.ItemView.extend({
+    var View = Marionette.CustomView.extend({
         template: 'modules/widgets/subjects/subjects.html',
 
         collection: collection,
 
-        collectionEvents: {
-            'sync': 'mediator'
-        },
-
         events: {
             'click a.subject': 'openSubjectDetails'
-        },
-
-        templateHelpers: {
-            extraProps: {
-                roleKey: 0
-            }
-        },
-
-        mediator: function(coll, response) {
-            this.templateHelpers.extraProps = response.extraProps;
-            this.render();
         },
 
         openSubjectDetails: function(e) {

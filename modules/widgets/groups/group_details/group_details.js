@@ -1,32 +1,22 @@
 app.module('groups.details', function(details, app) {
     'use strict';
 
-    var Collection = Backbone.Collection.extend();
+    var Collection = Backbone.CustomCollection.extend({
+        sortingProps: {
+            sortKey: 'student_name',
+            order: -1
+        }
+    });
 
     var collection = new Collection();
 
-    var View = Marionette.ItemView.extend({
+    var View = Marionette.CustomView.extend({
         template: 'modules/widgets/groups/group_details/group_details.html',
 
         collection: collection,
 
-        collectionEvents: {
-            'sync': 'mediator'
-        },
-
-        templateHelpers: {
-            extraProps: {
-                roleKey: 0
-            }
-        },
-
         events: {
             'click a.student': 'showStudentsBook'
-        },
-
-        mediator: function(coll, response) {
-            this.templateHelpers.extraProps = response.extraProps;
-            this.render();
         },
 
         showStudentsBook: function(e) {
@@ -35,7 +25,7 @@ app.module('groups.details', function(details, app) {
 
             console.log(groupId, id);
             e.preventDefault();
-            Backbone.history.navigate('students/' + groupId + '/' + id, true);
+            Backbone.history.navigate('groups/' + groupId + '/' + id, true);
         }
     });
 

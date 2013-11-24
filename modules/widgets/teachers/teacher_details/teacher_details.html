@@ -1,21 +1,20 @@
 <div class="container">
-    <!----- ANY USER && STUDENT or PARENT----->
     <% if(extraProps.roleKey === 1 || extraProps.roleKey === 3) { %>
-        <h4 class="access-rights-error">У вас нет прав для просмотра этой страницы</h4>
-    <!----- TEACHER ----->
+    <!----- ANY USER && STUDENT or PARENT----->
+    <h4 class="access-rights-error">У вас нет прав для просмотра этой страницы</h4>
     <% } if(extraProps.roleKey === 2) { %>
-        <h4 class="table-title">Some title</h4>
-        <table class="table table-zebra">
+    <!----- TEACHER ----->
+    <table class="table table-zebra">
             <thead>
             <tr>
-                <th>Предмет</th>
+                <th><span class="sorting" data-sort-key="subject_title">Предмет</span></th>
                 <th>Группа</th>
-                <th>Семестр</th>
+                <th><span class="sorting" data-sort-key="semester">Семестр</span></th>
             </tr>
             </thead>
             <tbody>
             <% _.each(items, function(item) { %>
-            <tr class="subject-row" data-id="<%= item.subject_id %>" data-group-id="<%= item.group_id %>">
+            <tr class="subject-row" data-id="<%= item.subject_id %>" data-group-id="<%= item.group_id %>" data-lector-id="<%= item.lector_id %>">
                 <td><%= item.subject_title %></td>
                 <td><%= item.group_name %></td>
                 <td><%= item.semester %></td>

@@ -1,11 +1,11 @@
 <div class="container">
-    <!----- ANY USER ----->
     <% if(extraProps.roleKey === 1) { %>
+    <!----- ANY USER ----->
         <table class="table table-zebra">
             <thead>
             <tr>
                 <th>Группа</th>
-                <th>Специальность</th>
+                <th><span class="sorting" data-sort-key="specialty">Специальность</span></th>
             </tr>
             </thead>
             <tbody>
@@ -17,13 +17,13 @@
             <% }); %>
             </tbody>
         </table>
-    <!----- TEACHER ----->
     <% } if(extraProps.roleKey === 2) { %>
+    <!----- TEACHER ----->
         <table class="table table-zebra">
             <thead>
             <tr>
                 <th>Группа</th>
-                <th>Специальность</th>
+                <th><span class="sorting" data-sort-key="specialty">Специальность</span></th>
             </tr>
             </thead>
             <tbody>
@@ -35,13 +35,13 @@
             <% }); %>
             </tbody>
         </table>
-    <!----- STUDENT or PARENT ----->
     <% } if(extraProps.roleKey === 3) { %>
-    <table class="table table-zebra">
+    <!----- STUDENT or PARENT ----->
+        <table class="table table-zebra">
         <thead>
         <tr>
             <th>Группа</th>
-            <th>Специальность</th>
+            <th><span class="sorting" data-sort-key="specialty">Специальность</span></th>
         </tr>
         </thead>
         <tbody>

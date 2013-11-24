@@ -7,17 +7,18 @@ app.module('mainRouter', function(mainRouter) {
 
             'groups': 'showGroups',
             'groups/:id': 'showGroupDetails',
+            'groups/:groupId/:studentId': 'showSBFromGroups',
 
             'students': 'showStudents',
             'students/:groupId/:studentId': 'showStudentsBook',
 
             'subjects': 'showSubjects',
             'subjects/:id': 'showSubjectDetails',
-            'subjects/list/:groupId/:subjectId': 'showList',
+            'subjects/list/:groupId/:subjectId': 'showListFromSubjects',
 
             'teachers': 'showTeachers',
             'teachers/:id': 'showTeacherDetails',
-            'teachers/list/:groupId/:subjectId': 'showList'
+            'teachers/:teacherId/list/:groupId/:subjectId': 'showList'
         }
     });
 });

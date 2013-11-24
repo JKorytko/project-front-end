@@ -1,7 +1,11 @@
 <div class="container">
     <ol class="breadcrumb">
-        <li><a href="#">Группы</a></li>
-        <li><a href="#">И-20б</a></li>
-        <li class="active">Some Student</li>
+        <% _.each(items, function(item, index) {
+            if(index + 1 === items.length) { %>
+                <li class="active"><%= item.name %></li>
+            <% } else { %>
+                <li><a href="<%= item.url %>"><%= item.name %></a></li>
+            <% }
+        }); %>
     </ol>
 </div>

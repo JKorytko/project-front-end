@@ -1,13 +1,12 @@
 <div class="container">
-
-    <!----- ANY USER && STUDENT or PARENT----->
     <% if(extraProps.roleKey === 1 || extraProps.roleKey === 3) { %>
+    <!----- ANY USER && STUDENT or PARENT----->
         <table class="table table-zebra">
             <thead>
             <tr>
-                <th>Предмет</th>
-                <th>Кредиты</th>
-                <th>Преподаватель</th>
+                <th><span class="sorting" data-sort-key="subject_title">Предмет</span></th>
+                <th><span class="sorting" data-sort-key="subject_credits">Кредиты</span></th>
+                <th><span class="sorting" data-sort-key="lector_name">Преподаватель</span></th>
             </tr>
             </thead>
             <tbody>
@@ -20,15 +19,14 @@
             <% }); %>
             </tbody>
         </table>
-
-    <!----- TEACHER ----->
     <% } if(extraProps.roleKey === 2) { %>
+    <!----- TEACHER ----->
         <table class="table table-zebra">
             <thead>
             <tr>
-                <th>Предмет</th>
-                <th>Кредиты</th>
-                <th>Преподаватель</th>
+                <th><span class="sorting" data-sort-key="subject_title">Предмет</span></th>
+                <th><span class="sorting" data-sort-key="subject_credits">Кредиты</span></th>
+                <th><span class="sorting" data-sort-key="lector_name">Преподаватель</span></th>
             </tr>
             </thead>
             <tbody>

@@ -1,34 +1,23 @@
 app.module('groups', function(groups, app) {
     'use strict';
 
-    var Collection = Backbone.Collection.extend({
-        url: app.mainUrl + '/groups/getGroups.php'
+    var Collection = Backbone.CustomCollection.extend({
+        url: app.mainUrl + '/groups/getGroups.php',
+        sortingProps: {
+            sortKey: 'specialty',
+            order: -1
+        }
     });
 
     var collection = new Collection();
 
-    var View = Marionette.ItemView.extend({
+    var View = Marionette.CustomView.extend({
         template: 'modules/widgets/groups/groups.html',
 
         collection: collection,
 
-        collectionEvents: {
-            'sync': 'mediator'
-        },
-
-        templateHelpers: {
-            extraProps: {
-                roleKey: 0
-            }
-        },
-
         events: {
             'click a.group': 'showGroup'
-        },
-
-        mediator: function(coll, response) {
-            this.templateHelpers.extraProps = response.extraProps;
-            this.render();
         },
 
         showGroup: function(e) {
