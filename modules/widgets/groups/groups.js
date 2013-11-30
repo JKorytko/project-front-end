@@ -4,7 +4,7 @@ app.module('groups', function(groups, app) {
     var Collection = Backbone.CustomCollection.extend({
         url: app.mainUrl + '/groups/getGroups.php',
         sortingProps: {
-            sortKey: 'specialty',
+            sortKey: 'group_name',
             order: -1
         }
     });

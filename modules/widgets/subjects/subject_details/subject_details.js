@@ -2,7 +2,10 @@ app.module('subjects.details', function(details, app) {
     'use strict';
 
     var Collection = Backbone.CustomCollection.extend({
-        comparator: null
+        sortingProps: {
+            sortKey: 'group_name',
+            order: -1
+        }
     });
 
     var collection = new Collection();
