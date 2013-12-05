@@ -1,11 +1,22 @@
 <div class="container">
-    <ol class="breadcrumb">
-        <% _.each(items, function(item, index) {
-            if(index + 1 === items.length) { %>
-                <li class="active"><%= item.name %></li>
-            <% } else { %>
-                <li><a href="<%= item.url %>"><%= item.name %></a></li>
-            <% }
-        }); %>
-    </ol>
+    <div class="top-additional-nav">
+        <ol class="breadcrumb">
+            <% _.each(items, function(item, index) {
+                if(index + 1 === items.length) { %>
+                    <li class="active"><%= item.name %></li>
+                <% } else { %>
+                    <li><a href="<%= item.url %>"><%= item.name %></a></li>
+                <% }
+            }); %>
+        </ol>
+        <% if(items.length === 1) {
+            if(items[0].name !== 'Главная') { %>
+                <div class="search">
+                    <form>
+                        <button class="search-btn btn-primary" data-search-type="<%= items[0].url %>">Поиск</button>
+                        <input type="text">
+                    </form>
+                </div>
+        <% }} %>
+    </div>
 </div>

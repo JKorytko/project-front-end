@@ -26,6 +26,7 @@ Marionette.CustomView = Marionette.ItemView.extend({
     },
 
     mediator: function(coll, response) {
+        console.log(response);
         this.templateHelpers.extraProps = response.extraProps;
         this.render();
     },

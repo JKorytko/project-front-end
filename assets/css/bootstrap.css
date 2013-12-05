@@ -746,13 +746,19 @@ textarea.form-control {
         margin-left: 0;
     }
 }
-/* breadcrumbs-comment */
-.breadcrumb {
-    padding: 8px 15px;
+/* top second nav */
+.top-additional-nav {
+    height: 36px;
     margin-bottom: 20px;
-    list-style: none;
     background-color: #f5f5f5;
     border-radius: 4px;
+}
+/* breadcrumbs-comment */
+.breadcrumb {
+    float: left;
+    margin: 8px 15px;
+    padding: 0;
+    list-style: none;
 }
 
 .breadcrumb > li {

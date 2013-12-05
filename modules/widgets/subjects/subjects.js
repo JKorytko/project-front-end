@@ -28,8 +28,14 @@ app.module('subjects', function(subjects, app) {
         }
     });
 
-    subjects.show = function() {
+    subjects.show = function(searchWord) {
         app.mainRegion.show(new View());
-        collection.fetch();
+        if(searchWord) {
+            collection.fetch({
+                url: app.mainUrl + '/supporting/search.php?searchWord=' + encodeURIComponent(searchWord) + '&tableKey=3'
+            });
+        } else {
+            collection.fetch();
+        }
     }
 });

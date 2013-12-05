@@ -10,8 +10,23 @@ app.module('breadcrumbs', function(breadcrumbs, app) {
 
         collection: collection,
 
+        events: {
+            'click .search-btn': 'search'
+        },
+
         collectionEvents: {
             'reset': 'render'
+        },
+
+        search: function(e) {
+            var $target = $(e.currentTarget),
+                searchType = $target.data('search-type'),
+                $input = $target.siblings('input'),
+                searchWord = $input.val();
+
+            //TODO: add validation
+            e.preventDefault();
+            Backbone.history.navigate(searchType.substring(1) + '/search/' + searchWord, true);
         }
     });
 
@@ -31,6 +46,7 @@ app.module('breadcrumbs', function(breadcrumbs, app) {
     breadcrumbs.setBreadcrumbs = function() {
         var args = Array.prototype.slice.call(arguments),
             breadcrumbs = [],
+            temp,
             i, l;
 
         if(requestDone) {
@@ -44,11 +60,12 @@ app.module('breadcrumbs', function(breadcrumbs, app) {
                         breadcrumbs[i].url = args[i].url;
                         breadcrumbs[i].name = _.where(mappingModel.get(args[i].mappingProp), {id: args[i].mappingIndex})[0].name +
                             ', ' +
-                            _.where(mappingModel.get(args[i].secondMappingProp), {id: args[i].secondMappingIndex})[0].name
+                            _.where(mappingModel.get(args[i].secondMappingProp), {id: args[i].secondMappingIndex})[0].name;
                     }
                     else {
+                        //temp = TODO bug breadcrumbs
                         breadcrumbs[i].url = args[i].url;
-                        breadcrumbs[i].name = _.where(mappingModel.get(args[i].mappingProp), {id: args[i].mappingIndex})[0].name
+                        breadcrumbs[i].name = _.where(mappingModel.get(args[i].mappingProp), {id: args[i].mappingIndex})[0].name;
                     }
                 }
             }

@@ -9,7 +9,10 @@ app.module('mainRouter', function(mainRouter, app) {
 
         showGroups: function() {
             app.groups.show();
-            app.breadcrumbs.setBreadcrumbs({name: '\u0413\u0440\u0443\u043F\u043F\u044B'}); //Группы
+            app.breadcrumbs.setBreadcrumbs({name: '\u0413\u0440\u0443\u043F\u043F\u044B', url: '#groups'}); //Группы
+        },
+        showGroupsSearchResults: function(searchWord) {
+            app.groups.show(searchWord);
         },
         showGroupDetails: function(id) {
             app.groups.details.show(id);
@@ -47,7 +50,10 @@ app.module('mainRouter', function(mainRouter, app) {
         //related to student
         showStudents: function() {
             app.students.show();
-            app.breadcrumbs.setBreadcrumbs({name: '\u0421\u0442\u0443\u0434\u0435\u043D\u0442\u044B'}); //Студенты
+            app.breadcrumbs.setBreadcrumbs({name: '\u0421\u0442\u0443\u0434\u0435\u043D\u0442\u044B', url: '#students'}); //Студенты
+        },
+        showStudentsSearchResults: function(searchWord) {
+            app.students.show(searchWord);
         },
         showStudentsBook: function(groupId, studentId) {
             app.students.recordBook.show(groupId, studentId);
@@ -66,7 +72,10 @@ app.module('mainRouter', function(mainRouter, app) {
         //related to subject
         showSubjects: function() {
             app.subjects.show();
-            app.breadcrumbs.setBreadcrumbs({name: '\u041F\u0440\u0435\u0434\u043C\u0435\u0442\u044B'}); //Предметы
+            app.breadcrumbs.setBreadcrumbs({name: '\u041F\u0440\u0435\u0434\u043C\u0435\u0442\u044B', url: '#subjects'}); //Предметы
+        },
+        showSubjectsSearchResults: function(searchWord) {
+            app.subjects.show(searchWord);
         },
         showSubjectDetails: function(id) {
             app.subjects.details.show(id);
@@ -103,7 +112,15 @@ app.module('mainRouter', function(mainRouter, app) {
         //related to teacher
         showTeachers: function() {
             app.teachers.show();
-            app.breadcrumbs.setBreadcrumbs({name: '\u041F\u0440\u0435\u043F\u043E\u0434\u0430\u0432\u0430\u0442\u0435\u043B\u0438'}); //Преподаватели
+            app.breadcrumbs.setBreadcrumbs(
+                {
+                    name: '\u041F\u0440\u0435\u043F\u043E\u0434\u0430\u0432\u0430\u0442\u0435\u043B\u0438', //Преподаватели
+                    url: '#teachers'
+                }
+            );
+        },
+        showTeachersSearchResults: function(searchWord) {
+            app.teachers.show(searchWord);
         },
         showTeacherDetails: function(id) {
             app.teachers.details.show(id);

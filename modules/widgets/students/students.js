@@ -29,8 +29,14 @@ app.module('students', function(students, app) {
         }
     });
 
-    students.show = function() {
+    students.show = function(searchWord) {
         app.mainRegion.show(new View());
-        collection.fetch();
+        if(searchWord) {
+            collection.fetch({
+                url: app.mainUrl + '/supporting/search.php?searchWord=' + encodeURIComponent(searchWord) + '&tableKey=2'
+            });
+        } else {
+            collection.fetch();
+        }
     }
 });

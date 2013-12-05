@@ -28,8 +28,14 @@ app.module('groups', function(groups, app) {
         }
     });
 
-    groups.show = function() {
+    groups.show = function(searchWord) {
         app.mainRegion.show(new View());
-        collection.fetch();
+        if(searchWord) {
+            collection.fetch({
+                url: app.mainUrl + '/supporting/search.php?searchWord=' + encodeURIComponent(searchWord) + '&tableKey=1'
+            });
+        } else {
+            collection.fetch();
+        }
     }
 });
