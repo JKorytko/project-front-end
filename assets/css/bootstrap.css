@@ -746,6 +746,72 @@ textarea.form-control {
         margin-left: 0;
     }
 }
+/* main */
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.row:before,
+.row:after {
+    display: table;
+    content: " ";
+}
+
+.row:after {
+    clear: both;
+}
+
+.row:before,
+.row:after {
+    display: table;
+    content: " ";
+}
+
+.row:after {
+    clear: both;
+}
+.col-md-6,
+.col-md-12 {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-md-6 {
+    width: 50%;
+}
+.col-md-12 {
+    width: 100%;
+}
+.jumbotron {
+    padding: 30px;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 2.1428571435;
+    color: inherit;
+    /*background-color: #eeeeee;*/
+}
+
+.jumbotron h1,
+.jumbotron .h1 {
+    font-size: 63px;
+    line-height: 1;
+    color: inherit;
+}
+
+.jumbotron p {
+    line-height: 1.4;
+}
+
+.container .jumbotron {
+    border-radius: 6px;
+}
+
+.jumbotron .container {
+    max-width: 100%;
+}
 /* top second nav */
 .top-additional-nav {
     height: 36px;
