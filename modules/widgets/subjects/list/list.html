@@ -4,34 +4,51 @@
         <h4 class="access-rights-error">У вас нет прав для просмотра этой страницы</h4>
     <% } if(extraProps.roleKey === 2) { %>
     <!----- TEACHER ----->
+        <% var modulesNum = Math.ceil(items[0].subject_credits/2); %>
         <h4 class="table-title">Some title</h4>
-        <table class="table table-zebra list-table">
+        <table class="table table-zebra">
             <thead>
             <tr>
                 <th><span class="sorting" data-sort-key="name_student">Студент</span></th>
-                <th>Оценки</th>
+                <% for(var i = 0; i < modulesNum; i++) { %>
+                    <th><%= 'M' + (i+1) %></th>
+                <% } %>
+                <th>Итоговая оценка</th>
             </tr>
             </thead>
             <tbody>
             <% _.each(items, function(item) { %>
             <tr>
                 <td><%= item.name_student %></td>
-                <td>
-                    <% if(item.moduls.length > 0) { %>
-                    <table class="modules-table">
-                        <tbody>
-                        <tr>
-                            <% _.each(item.moduls, function(module) { %>
-                            <td title="<%= module.module_name %>"><%= module.grade || 'Н/О'%></td>
-                            <% }); %>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <% } %>
-                </td>
+                <% for(var i = 0; i < modulesNum; i++) { %>
+                    <td><%= item.moduls[i] ? item.moduls[i].grade : null %></td>
+                <% } %>
+                <td><%= item.moduls[modulesNum] ? item.moduls[modulesNum].grade : null %></td>
             </tr>
             <% }); %>
             </tbody>
         </table>
+
+        <div class="dead-lines">
+            <h4 class="table-title" style="margin-top: 100px;">Информация о dead-line оценок</h4>
+            <table class="table-zebra table dead-lines-table">
+                <thead>
+                <tr>
+                    <th style="width: 106px;">Сокращение</th>
+                    <th>Название модуля</th>
+                    <th>Dead-line</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for(var i = 0; i < modulesNum; i++) { %>
+                <tr>
+                    <td><%= 'M' + (i+1) %></td>
+                    <td><%= items[0].moduls[i] ? items[0].moduls[i].module_name : null %></td>
+                    <td><%= items[0].moduls[i] ? items[0].moduls[i].date : null %></td>
+                </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
     <% } %>
 </div>
