@@ -20,8 +20,8 @@
             <% }); %>
             </tbody>
         </table>
-    <% } if(extraProps.roleKey === 3) { %>
-    <!----- STUDENT or PARENT ----->
+    <% } if(extraProps.roleKey === 3 || extraProps.roleKey == 4) { %>
+    <!----- STUDENT or PARENT && Admin ----->
         <table class="table table-zebra">
             <thead>
             <tr>

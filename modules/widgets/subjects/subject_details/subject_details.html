@@ -2,8 +2,8 @@
     <% if(extraProps.roleKey === 1 || extraProps.roleKey === 3) { %>
     <!----- ANY USER && STUDENT or PARENT----->
         <h4 class="access-rights-error">У вас нет прав для просмотра этой страницы</h4>
-    <% } if(extraProps.roleKey === 2) { %>
-    <!----- TEACHER ----->
+    <% } if(extraProps.roleKey === 2 || extraProps.roleKey == 4) { %>
+    <!----- TEACHER && Admin ----->
         <table class="table table-zebra">
             <thead>
             <tr>

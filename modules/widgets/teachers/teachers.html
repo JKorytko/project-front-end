@@ -24,7 +24,7 @@
             <tr>
                 <th><span class="sorting" data-sort-key="lector_name">Преподаватель</span></th>
                 <th><span class="sorting" data-sort-key="lector_position">Ученая степень</span></th>
-                <th><span class="sorting" data-sort-key="lector_email">Электронная почта</span></th>
+                <!-- <th><span class="sorting" data-sort-key="lector_email">Электронная почта</span></th> -->
             </tr>
             </thead>
             <tbody>
@@ -36,10 +36,30 @@
                     <td><%= item.lector_name %></td>
                 <% } %>
                 <td><%= item.lector_position %></td>
-                <td><%= item.lector_email %></td>
+                <!-- <td><%= item.lector_email %></td> -->
             </tr>
             <% }); %>
             </tbody>
         </table>
+    <% } if(extraProps.roleKey === 4) { %>
+    <!----- Admin ----->
+    <table class="table table-zebra">
+        <thead>
+        <tr>
+            <th><span class="sorting" data-sort-key="lector_name">Преподаватель</span></th>
+            <th><span class="sorting" data-sort-key="lector_position">Ученая степень</span></th>
+            <th><span class="sorting" data-sort-key="lector_email">Электронная почта</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% _.each(items, function(item) { %>
+        <tr>
+            <td><a href="#" class="teacher" data-id="<%= item.lector_id %>"><%= item.lector_name %></a></td>
+            <td><%= item.lector_position %></td>
+            <td><%= item.lector_email %></td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
     <% } %>
 </div>

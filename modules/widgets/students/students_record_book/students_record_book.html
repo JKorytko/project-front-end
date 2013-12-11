@@ -3,7 +3,7 @@
     <% if(extraProps.roleKey === 1 || extraProps.roleKey === 2) { %>
         <h4 class="access-rights-error">У вас нет прав для просмотра этой страницы</h4>
     <!----- STUDENT or PARENT ----->
-    <% } if(extraProps.roleKey === 3) { %>
+    <% } if(extraProps.roleKey === 3 || extraProps.roleKey == 4) { %>
         <h4 class="table-title">Some title</h4>
         <table class="table table-delimited">
             <thead>
