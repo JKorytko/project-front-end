@@ -1,5 +1,5 @@
-html {
-    height: 101%;
+.hidden {
+    visibility: hidden;
 }
 
 #login-label {

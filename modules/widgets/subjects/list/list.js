@@ -13,7 +13,16 @@ app.module('subjects.list', function(list, app) {
     var View = Marionette.CustomView.extend({
         template: 'modules/widgets/subjects/list/list.html',
 
-        collection: collection
+        collection: collection,
+
+        events: {
+            'click .edit_grades': 'showEditableList'
+        },
+
+        showEditableList: function(e) {
+            e.preventDefault();
+            Backbone.history.navigate(Backbone.history.fragment + '/edit', true);
+        }
     });
 
     list.show = function(groupId, subjectId) {

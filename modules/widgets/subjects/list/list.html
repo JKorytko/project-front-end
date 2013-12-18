@@ -6,7 +6,7 @@
     <!----- TEACHER && Admin ----->
         <% var modulesNum = 0;
         if(items[0]) { modulesNum = Math.ceil(items[0].subject_credits/2); } %>
-        <h4 class="table-title">Some title</h4>
+        <h4 class="table-title">Ведомость группы <%= extraProps.group_name %> по предмету <%= extraProps.subject_title %></h4>
         <table class="table table-zebra">
             <thead>
             <tr>
@@ -29,6 +29,8 @@
             <% }); %>
             </tbody>
         </table>
+
+        <a href="#" class="edit_grades">Редактировать оценки</a>
 
         <div class="dead-lines">
             <h4 class="table-title" style="margin-top: 100px;">Информация о dead-line оценок</h4>

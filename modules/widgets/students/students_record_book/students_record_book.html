@@ -4,7 +4,7 @@
         <h4 class="access-rights-error">У вас нет прав для просмотра этой страницы</h4>
     <!----- STUDENT or PARENT ----->
     <% } if(extraProps.roleKey === 3 || extraProps.roleKey == 4) { %>
-        <h4 class="table-title">Some title</h4>
+        <h4 class="table-title">Зачетка студента <%= extraProps.student_name %> группы <%= extraProps.group_name %></h4>
         <table class="table table-delimited">
             <thead>
             <tr>

@@ -20,8 +20,8 @@
             <% }); %>
             </tbody>
         </table>
-    <% } if(extraProps.roleKey === 3 || extraProps.roleKey == 4) { %>
-    <!----- STUDENT or PARENT && Admin ----->
+    <% } if(extraProps.roleKey === 3) { %>
+    <!----- STUDENT or PARENT ----->
         <table class="table table-zebra">
             <thead>
             <tr>
@@ -44,5 +44,29 @@
             <% }); %>
             </tbody>
         </table>
+    <% } if(extraProps.roleKey == 4) { %>
+    <!----- Admin ----->
+    <table class="table table-zebra">
+        <thead>
+        <tr>
+            <th><span class="sorting" data-sort-key="student_name">Студент</span></th>
+            <th><span class="sorting" data-sort-key="group_name">Группа</span></th>
+            <th><span class="sorting" data-sort-key="student_notes">Заметки</span></th>
+            <th><span class="sorting" data-sort-key="student_email">Электронная почта</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% _.each(items, function(item) { %>
+        <tr>
+            <td>
+                <a href="#" class="student" data-id="<%= item.student_id %>" data-group-id="<%= item.group_id %>"><%= item.student_name %></a>
+            </td>
+            <td><%= item.group_name %></td>
+            <td><%= item.student_notes %></td>
+            <td><%= item.student_email %></td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
     <% } %>
 </div>

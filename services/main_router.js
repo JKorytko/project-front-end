@@ -22,7 +22,8 @@ app.module('mainRouter', function(mainRouter) {
             'teachers': 'showTeachers',
             'teachers/search/:searchWord': 'showTeachersSearchResults',
             'teachers/:id': 'showTeacherDetails',
-            'teachers/:teacherId/list/:groupId/:subjectId': 'showList'
+            'teachers/:teacherId/list/:groupId/:subjectId': 'showList',
+            'teachers/:teacherId/list/:groupId/:subjectId/edit': 'showEditableList'
         }
     });
 });

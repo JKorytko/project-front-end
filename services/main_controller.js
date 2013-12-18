@@ -4,157 +4,78 @@ app.module('mainRouter', function(mainRouter, app) {
     var Controller = Marionette.Controller.extend({
         index: function() {
             app.home.show();
-            app.breadcrumbs.setBreadcrumbs({name: '\u0413\u043B\u0430\u0432\u043D\u0430\u044F'}); //Главная
+            app.breadcrumbs.indexBC();
         },
 
         showGroups: function() {
             app.groups.show();
-            app.breadcrumbs.setBreadcrumbs({name: '\u0413\u0440\u0443\u043F\u043F\u044B', url: '#groups'}); //Группы
+            app.breadcrumbs.showGroupsBC();
         },
         showGroupsSearchResults: function(searchWord) {
             app.groups.show(searchWord);
+            app.breadcrumbs.showGroupsBC();
         },
         showGroupDetails: function(id) {
             app.groups.details.show(id);
-            app.breadcrumbs.setBreadcrumbs(
-                {
-                    url: '#groups',
-                    name: '\u0413\u0440\u0443\u043F\u043F\u044B'
-                },
-                {
-                    url: '#groups/' + id,
-                    mappingProp: 'groups',
-                    mappingIndex: id
-                }
-            );
+            app.breadcrumbs.showGroupDetailsBC(id);
         },
         showSBFromGroups: function(groupId, studentId) {
             app.students.recordBook.show(groupId, studentId);
-            app.breadcrumbs.setBreadcrumbs(
-                {
-                    url: '#groups',
-                    name: '\u0413\u0440\u0443\u043F\u043F\u044B'
-                },
-                {
-                    url: '#groups/' + groupId,
-                    mappingProp: 'groups',
-                    mappingIndex: groupId
-                },
-                {
-                    mappingProp: 'students',
-                    mappingIndex: studentId
-                }
-            );
+            app.breadcrumbs.showSBFromGroupsBC(groupId, studentId);
         },
 
         //related to student
         showStudents: function() {
             app.students.show();
-            app.breadcrumbs.setBreadcrumbs({name: '\u0421\u0442\u0443\u0434\u0435\u043D\u0442\u044B', url: '#students'}); //Студенты
+            app.breadcrumbs.showStudentsBC();
         },
         showStudentsSearchResults: function(searchWord) {
             app.students.show(searchWord);
+            app.breadcrumbs.showStudentsBC();
         },
         showStudentsBook: function(groupId, studentId) {
             app.students.recordBook.show(groupId, studentId);
-            app.breadcrumbs.setBreadcrumbs(
-                {
-                    url: '#students',
-                    name: '\u0421\u0442\u0443\u0434\u0435\u043D\u0442\u044B'
-                },
-                {
-                    mappingProp: 'students',
-                    mappingIndex: studentId
-                }
-            );
+            app.breadcrumbs.showStudentsBookBC(studentId);
         },
 
         //related to subject
         showSubjects: function() {
             app.subjects.show();
-            app.breadcrumbs.setBreadcrumbs({name: '\u041F\u0440\u0435\u0434\u043C\u0435\u0442\u044B', url: '#subjects'}); //Предметы
+            app.breadcrumbs.showSubjectsBC();
         },
         showSubjectsSearchResults: function(searchWord) {
             app.subjects.show(searchWord);
+            app.breadcrumbs.showSubjectsBC();
         },
         showSubjectDetails: function(id) {
             app.subjects.details.show(id);
-            app.breadcrumbs.setBreadcrumbs(
-                {
-                    url: '#subjects',
-                    name: '\u041F\u0440\u0435\u0434\u043C\u0435\u0442\u044B'
-                },
-                {
-                    mappingProp: 'subjects',
-                    mappingIndex: id
-                }
-            );
+            app.breadcrumbs.showSubjectDetailsBC();
         },
         showListFromSubjects: function(groupId, subjectId) {
             app.subjects.list.show(groupId, subjectId);
-            app.breadcrumbs.setBreadcrumbs(
-                {
-                    url: '#subjects',
-                    name: '\u041F\u0440\u0435\u0434\u043C\u0435\u0442\u044B'
-                },
-                {
-                    url: '#subjects/' + subjectId,
-                    mappingProp: 'subjects',
-                    mappingIndex: subjectId
-                },
-                {
-                    mappingProp: 'groups',
-                    mappingIndex: groupId
-                }
-            );
+            app.breadcrumbs.showListFromSubjectsBC(subjectId, groupId);
         },
 
         //related to teacher
         showTeachers: function() {
             app.teachers.show();
-            app.breadcrumbs.setBreadcrumbs(
-                {
-                    name: '\u041F\u0440\u0435\u043F\u043E\u0434\u0430\u0432\u0430\u0442\u0435\u043B\u0438', //Преподаватели
-                    url: '#teachers'
-                }
-            );
+            app.breadcrumbs.showTeachersBC();
         },
         showTeachersSearchResults: function(searchWord) {
             app.teachers.show(searchWord);
+            app.breadcrumbs.showTeachersBC();
         },
         showTeacherDetails: function(id) {
             app.teachers.details.show(id);
-            app.breadcrumbs.setBreadcrumbs(
-                {
-                    url: '#teachers',
-                    name: '\u041F\u0440\u0435\u043F\u043E\u0434\u0430\u0432\u0430\u0442\u0435\u043B\u0438'
-                },
-                {
-                    mappingProp: 'lectors',
-                    mappingIndex: id
-                }
-            );
+            app.breadcrumbs.showTeacherDetailsBC(id);
         },
         showList: function(teacherId, groupId, subjectId) {
             app.subjects.list.show(groupId, subjectId);
-            app.breadcrumbs.setBreadcrumbs(
-                {
-                    url: '#teachers',
-                    name: '\u041F\u0440\u0435\u043F\u043E\u0434\u0430\u0432\u0430\u0442\u0435\u043B\u0438'
-                },
-                {
-                    url: '#teachers/' + teacherId,
-                    mappingProp: 'lectors',
-                    mappingIndex: teacherId
-                },
-                {
-                    double: true,
-                    mappingProp: 'subjects',
-                    mappingIndex: subjectId,
-                    secondMappingProp: 'groups',
-                    secondMappingIndex: groupId
-                }
-            );
+            app.breadcrumbs.showListBC(teacherId, subjectId, groupId);
+        },
+        showEditableList: function(teacherId, groupId, subjectId) {
+            app.subjects.editableList.show(groupId, subjectId);
+            app.breadcrumbs.showListBC(teacherId, subjectId, groupId);
         }
     });
 
