@@ -33,7 +33,7 @@ app.module('subjects.editableList', function(list, app) {
                 tempArr = _.where(this.changedGradesArr, {moduleID: moduleID}),
                 tempObj = {
                     moduleID: moduleID,
-                    studentID: $target.closest('tr').data('student-id'),
+                    studendID: $target.closest('tr').data('student-id'),
                     groupID: $target.closest('table').data('group-id'),
                     grade: $target.val()
                 };
@@ -44,7 +44,6 @@ app.module('subjects.editableList', function(list, app) {
             } else {
                 this.changedGradesArr.push(tempObj);
             }
-            console.log(tempArr, this.changedGradesArr)
         },
 
         saveChanges: function(e) {
@@ -53,20 +52,18 @@ app.module('subjects.editableList', function(list, app) {
                     grades: this.changedGradesArr
                 };
 
-            console.log(data)
             e.preventDefault();
             //TODO ajax doesn't work
             $.ajax({
                 type: 'POST',
-                dataType: 'json',
+                processData: false,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('Content-Type', 'application/json')
+                },
                 url: app.mainUrl + '/supporting/updateGrade.php',
                 data: JSON.stringify(data),
                 success: function() {
-                    console.log(228)
                     Backbone.history.navigate(currRoute.substr(0, currRoute.length - 5), true);
-                },
-                error: function(a, b, c) {
-                    console.log(b, c);
                 }
             });
         }

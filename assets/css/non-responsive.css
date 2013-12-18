@@ -224,7 +224,7 @@ table.modules-table>tbody td:last-child {
   float: left;
 }
 .navbar-nav > li > a {
-  padding: 15px;
+  padding: 15px 10px;
 }
 
 /* Redeclare since we override the float above */
