@@ -2,12 +2,12 @@ var app = (function(window, Marionette) {
     var app = new Marionette.Application(),
         templates;
 
-    //app.mainUrl = 'http://cyberall.ru';
     app.mainUrl = 'http://dev.myacademy.com.ua';
 
     templates = [
         'modules/header/header.html',
         'modules/breadcrumbs/breadcrumbs.html',
+        'modules/footer/footer.html',
 
         'modules/widgets/home/home.html',
 
@@ -29,7 +29,8 @@ var app = (function(window, Marionette) {
     app.addRegions({
         headerRegion: '#header',
         breadcrumbsRegion: '#breadcrumbs',
-        mainRegion: '#main'
+        mainRegion: '#main',
+        footerRegion: '#footer'
     });
 
     app.on('initialize:after', function() {

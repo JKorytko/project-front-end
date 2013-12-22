@@ -5,7 +5,7 @@
     <% } if(extraProps.roleKey === 2 || extraProps.roleKey == 4) { %>
     <!----- TEACHER && Admin ----->
     <% var modulesNum = 0,
-    grades = ['1', '2Fx', '3E', '3D', '4C', '4B', '5B', '5A'],
+    grades = ['', '1', '2Fx', '3E', '3D', '4C', '4B', '5B', '5A'],
     gradesLength = grades.length,
     i, j;
     if(items[0]) { modulesNum = Math.ceil(items[0].subject_credits/2); } %>
@@ -42,6 +42,7 @@
         </tbody>
     </table>
 
+    <a href="#" class="cancel">Отменить редактирование</a>
     <a href="#" class="save_changes hidden">Сохранить изменения</a>
 
     <div class="dead-lines">
@@ -54,15 +55,22 @@
                 <th>Dead-line</th>
             </tr>
             </thead>
-            <tbody>
-            <% for(i = 0; i < modulesNum; i++) { %>
-            <tr>
-                <td><%= 'M' + (i+1) %></td>
-                <td><%= items[0].moduls[i] ? items[0].moduls[i].module_name : null %></td>
-                <td><%= items[0].moduls[i] ? items[0].moduls[i].date : null %></td>
-            </tr>
+            <% if(items[0]) { %>
+                <tbody>
+                <% for(i = 0; i < modulesNum; i++) { %>
+                <tr>
+                    <td><%= 'M' + (i+1) %></td>
+                    <td><%= items[0].moduls[i] ? items[0].moduls[i].module_name : null %></td>
+                    <td><%= items[0].moduls[i] ? items[0].moduls[i].date : null %></td>
+                </tr>
+                <% } %>
+                <tr>
+                    <td>-</td>
+                    <td><%= items[0].moduls[modulesNum] ? items[0].moduls[modulesNum].module_name : null %></td>
+                    <td><%= items[0].moduls[modulesNum] ? items[0].moduls[modulesNum].date : null %></td>
+                </tr>
+                </tbody>
             <% } %>
-            </tbody>
         </table>
     </div>
     <% } %>

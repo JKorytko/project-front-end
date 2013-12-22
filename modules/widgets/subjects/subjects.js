@@ -9,7 +9,7 @@ app.module('subjects', function(subjects, app) {
         }
     });
 
-    var collection = new Collection();
+    var collection = new Collection([{}]);
 
     var View = Marionette.CustomView.extend({
         template: 'modules/widgets/subjects/subjects.html',

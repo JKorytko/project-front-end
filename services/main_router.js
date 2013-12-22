@@ -18,6 +18,7 @@ app.module('mainRouter', function(mainRouter) {
             'subjects/search/:searchWord': 'showSubjectsSearchResults',
             'subjects/:id': 'showSubjectDetails',
             'subjects/list/:groupId/:subjectId': 'showListFromSubjects',
+            'subjects/list/:groupId/:subjectId/edit': 'showEditableListFromSubjects',
 
             'teachers': 'showTeachers',
             'teachers/search/:searchWord': 'showTeachersSearchResults',

@@ -9,12 +9,18 @@
             </tr>
             </thead>
             <tbody>
-            <% _.each(items, function(item) { %>
-            <tr>
-                <td><%= item.lector_name %></td>
-                <td><%= item.lector_position %></td>
-            </tr>
-            <% }); %>
+            <% if(items.length > 0) { %>
+                <% _.each(items, function(item) { %>
+                <tr>
+                    <td><%= item.lector_name %></td>
+                    <td><%= item.lector_position %></td>
+                </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="2">По данному запросу ничего не найдено</td>
+                </tr>
+            <% } %>
             </tbody>
         </table>
     <% } if(extraProps.roleKey === 2) { %>
@@ -24,21 +30,26 @@
             <tr>
                 <th><span class="sorting" data-sort-key="lector_name">Преподаватель</span></th>
                 <th><span class="sorting" data-sort-key="lector_position">Ученая степень</span></th>
-                <!-- <th><span class="sorting" data-sort-key="lector_email">Электронная почта</span></th> -->
             </tr>
             </thead>
             <tbody>
-            <% _.each(items, function(item) { %>
-            <tr>
-                <% if(item.lector_id) { %>
-                    <td><a href="#" class="teacher" data-id="<%= item.lector_id %>"><%= item.lector_name %></a></td>
-                <% } else { %>
-                    <td><%= item.lector_name %></td>
-                <% } %>
-                <td><%= item.lector_position %></td>
-                <!-- <td><%= item.lector_email %></td> -->
-            </tr>
-            <% }); %>
+            <% if(items.length > 0) { %>
+                <% _.each(items, function(item) { %>
+                <tr>
+                    <% if(item.lector_id) { %>
+                        <td><a href="#" class="teacher" data-id="<%= item.lector_id %>"><%= item.lector_name %></a></td>
+                    <% } else { %>
+                        <td><%= item.lector_name %></td>
+                    <% } %>
+                    <td><%= item.lector_position %></td>
+                    <!-- <td><%= item.lector_email %></td> -->
+                </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="2">По данному запросу ничего не найдено</td>
+                </tr>
+            <% } %>
             </tbody>
         </table>
     <% } if(extraProps.roleKey === 4) { %>
@@ -52,13 +63,19 @@
         </tr>
         </thead>
         <tbody>
-        <% _.each(items, function(item) { %>
-        <tr>
-            <td><a href="#" class="teacher" data-id="<%= item.lector_id %>"><%= item.lector_name %></a></td>
-            <td><%= item.lector_position %></td>
-            <td><%= item.lector_email %></td>
-        </tr>
-        <% }); %>
+        <% if(items.length > 0) { %>
+            <% _.each(items, function(item) { %>
+            <tr>
+                <td><a href="#" class="teacher" data-id="<%= item.lector_id %>"><%= item.lector_name %></a></td>
+                <td><%= item.lector_position %></td>
+                <td><%= item.lector_email %></td>
+            </tr>
+            <% }); %>
+        <% } else { %>
+            <tr>
+                <td colspan="3">По данному запросу ничего не найдено</td>
+            </tr>
+        <% } %>
         </tbody>
     </table>
     <% } %>

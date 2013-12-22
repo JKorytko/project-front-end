@@ -49,10 +49,14 @@ app.module('mainRouter', function(mainRouter, app) {
         },
         showSubjectDetails: function(id) {
             app.subjects.details.show(id);
-            app.breadcrumbs.showSubjectDetailsBC();
+            app.breadcrumbs.showSubjectDetailsBC(id);
         },
         showListFromSubjects: function(groupId, subjectId) {
             app.subjects.list.show(groupId, subjectId);
+            app.breadcrumbs.showListFromSubjectsBC(subjectId, groupId);
+        },
+        showEditableListFromSubjects: function(groupId, subjectId) {
+            app.subjects.editableList.show(groupId, subjectId);
             app.breadcrumbs.showListFromSubjectsBC(subjectId, groupId);
         },
 

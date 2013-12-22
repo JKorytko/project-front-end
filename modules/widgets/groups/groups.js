@@ -9,7 +9,7 @@ app.module('groups', function(groups, app) {
         }
     });
 
-    var collection = new Collection();
+    var collection = new Collection([{}]);
 
     var View = Marionette.CustomView.extend({
         template: 'modules/widgets/groups/groups.html',

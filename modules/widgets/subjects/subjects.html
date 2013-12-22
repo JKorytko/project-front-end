@@ -10,13 +10,19 @@
             </tr>
             </thead>
             <tbody>
-            <% _.each(items, function(item) { %>
-            <tr>
-                <td><%= item.subject_title %></td>
-                <td><%= item.subject_credits %></td>
-                <td><%= item.lector_name %></td>
-            </tr>
-            <% }); %>
+            <% if(items.length > 0) { %>
+                <% _.each(items, function(item) { %>
+                <tr>
+                    <td><%= item.subject_title %></td>
+                    <td><%= item.subject_credits %></td>
+                    <td><%= item.lector_name %></td>
+                </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3">По данному запросу ничего не найдено</td>
+                </tr>
+            <% } %>
             </tbody>
         </table>
     <% } if(extraProps.roleKey === 2 || extraProps.roleKey == 4) { %>
@@ -30,17 +36,23 @@
             </tr>
             </thead>
             <tbody>
-            <% _.each(items, function(item) { %>
-            <tr>
-                <% if(item.subject_id) { %>
-                    <td><a href="#" class="subject" data-id="<%= item.subject_id %>"><%= item.subject_title %></a></td>
-                <% } else { %>
-                    <td><%= item.subject_title %></td>
-                <% } %>
-                <td><%= item.subject_credits %></td>
-                <td><%= item.lector_name %></td>
-            </tr>
-            <% }); %>
+            <% if(items.length > 0) { %>
+                <% _.each(items, function(item) { %>
+                <tr>
+                    <% if(item.subject_id) { %>
+                        <td><a href="#" class="subject" data-id="<%= item.subject_id %>"><%= item.subject_title %></a></td>
+                    <% } else { %>
+                        <td><%= item.subject_title %></td>
+                    <% } %>
+                    <td><%= item.subject_credits %></td>
+                    <td><%= item.lector_name %></td>
+                </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3">По данному запросу ничего не найдено</td>
+                </tr>
+            <% } %>
             </tbody>
         </table>
     <% } %>

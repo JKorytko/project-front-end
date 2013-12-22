@@ -12,12 +12,18 @@
             </tr>
             </thead>
             <tbody>
-            <% _.each(items, function(item) { %>
-            <tr>
-                <td><%= item.student_name %></td>
-                <td><%= item.group_name %></td>
-            </tr>
-            <% }); %>
+            <% if(items.length > 0) { %>
+                <% _.each(items, function(item) { %>
+                <tr>
+                    <td><%= item.student_name %></td>
+                    <td><%= item.group_name %></td>
+                </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="2">По данному запросу ничего не найдено</td>
+                </tr>
+            <% } %>
             </tbody>
         </table>
     <% } if(extraProps.roleKey === 3) { %>
@@ -30,18 +36,24 @@
             </tr>
             </thead>
             <tbody>
-            <% _.each(items, function(item) { %>
-            <tr>
-                <% if(item.student_id) { %>
-                    <td>
-                        <a href="#" class="student" data-id="<%= item.student_id %>" data-group-id="<%= item.group_id %>"><%= item.student_name %></a>
-                    </td>
-                <% } else { %>
-                    <td><%= item.student_name %></td>
-                <% } %>
-                <td><%= item.group_name %></td>
-            </tr>
-            <% }); %>
+            <% if(items.length > 0) { %>
+                <% _.each(items, function(item) { %>
+                <tr>
+                    <% if(item.student_id) { %>
+                        <td>
+                            <a href="#" class="student" data-id="<%= item.student_id %>" data-group-id="<%= item.group_id %>"><%= item.student_name %></a>
+                        </td>
+                    <% } else { %>
+                        <td><%= item.student_name %></td>
+                    <% } %>
+                    <td><%= item.group_name %></td>
+                </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="2">По данному запросу ничего не найдено</td>
+                </tr>
+            <% } %>
             </tbody>
         </table>
     <% } if(extraProps.roleKey == 4) { %>
@@ -56,16 +68,22 @@
         </tr>
         </thead>
         <tbody>
-        <% _.each(items, function(item) { %>
-        <tr>
-            <td>
-                <a href="#" class="student" data-id="<%= item.student_id %>" data-group-id="<%= item.group_id %>"><%= item.student_name %></a>
-            </td>
-            <td><%= item.group_name %></td>
-            <td><%= item.student_notes %></td>
-            <td><%= item.student_email %></td>
-        </tr>
-        <% }); %>
+        <% if(items.length > 0) { %>
+            <% _.each(items, function(item) { %>
+            <tr>
+                <td>
+                    <a href="#" class="student" data-id="<%= item.student_id %>" data-group-id="<%= item.group_id %>"><%= item.student_name %></a>
+                </td>
+                <td><%= item.group_name %></td>
+                <td><%= item.student_notes %></td>
+                <td><%= item.student_email %></td>
+            </tr>
+            <% }); %>
+        <% } else { %>
+            <tr>
+                <td colspan="4">По данному запросу ничего не найдено</td>
+            </tr>
+        <% } %>
         </tbody>
     </table>
     <% } %>

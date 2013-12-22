@@ -9,7 +9,7 @@ app.module('teachers', function(teachers, app) {
         }
     });
 
-    var collection = new Collection();
+    var collection = new Collection([{}]);
 
     var View = Marionette.CustomView.extend({
         template: 'modules/widgets/teachers/teachers.html',

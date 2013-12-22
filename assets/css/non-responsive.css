@@ -2,6 +2,18 @@
     visibility: hidden;
 }
 
+.error .form-control {
+    border-color: #F86E79;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(248, 91, 135, 0.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(248, 91, 135, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(248, 91, 135, 0.6);
+}
+
+.save_changes {
+    margin-left: 45px;
+}
+
 #login-label {
     color: #777777;
     font-size: 15px;
@@ -10,6 +22,29 @@
 
 tr.subject-row {
     cursor: pointer;
+}
+/* icons */
+.header-ico {
+    position: relative;
+    padding-left: 45px;
+}
+.header-ico:before {
+    content: '';
+    display: block;
+    width: 42px;
+    height: 42px;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+}
+.header-ico.students-ico:before {
+    background: url("../images/students.png") no-repeat;
+}
+.header-ico.teachers-ico:before {
+    background: url("../images/teachers.png") no-repeat;
+}
+.header-ico.info-ico:before {
+    background: url("../images/info.png") no-repeat;
 }
 /* search */
 .search {
@@ -166,13 +201,6 @@ table.modules-table>tbody td:last-child {
   padding-left: 10px;
 }
 
-/* Non-responsive overrides
- *
- * Utilitze the following CSS to disable the responsive-ness of the container,
- * grid system, and navbar.
- */
-
-/* Reset the container */
 .container {
   max-width: none !important;
   width: 970px;
@@ -261,7 +289,39 @@ table.modules-table>tbody td:last-child {
   color: #999 !important;
   background-color: transparent !important;
 }
+/* footer */
+#footer {
+    height: 150px;
+    width: 100%;
+    background-color: #f5f5f5;
+    color: #333333;
+    border-top: 1px solid #E7E7E7;
+    margin-top: 30px;
+    position: absolute;
+    bottom: 0;
+}
+#footer .footer-section {
+    width: 313px;
+    padding: 30px 0 0 25px;
+    float: left;
+    height: 150px;
 
+    font-size: 13px;
+    line-height: 30px;
+}
+#footer .footer-section.last {
+    text-align: right;
+    padding-right: 25px;
+}
+/* layout */
+.wrapper {
+    min-height: 100%;
+    position: relative;
+    min-width: 970px;
+}
+#main {
+    padding-bottom: 180px;
+}
 /* dead-lines */
 .dead-lines {
     margin-top: 100px;

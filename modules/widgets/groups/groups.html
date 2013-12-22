@@ -9,12 +9,18 @@
             </tr>
             </thead>
             <tbody>
-            <% _.each(items, function(item) { %>
-            <tr>
-                <td><%= item.group_name %></td>
-                <td><%= item.specialty %></td>
-            </tr>
-            <% }); %>
+            <% if(items.length > 0) { %>
+                <% _.each(items, function(item) { %>
+                <tr>
+                    <td><%= item.group_name %></td>
+                    <td><%= item.specialty %></td>
+                </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="2">По данному запросу ничего не найдено</td>
+                </tr>
+            <% } %>
             </tbody>
         </table>
     <% } if(extraProps.roleKey === 2) { %>
@@ -27,12 +33,18 @@
             </tr>
             </thead>
             <tbody>
-            <% _.each(items, function(item) { %>
-            <tr>
-                <td><a href="#" class="group" data-id="<%= item.group_id %>"><%= item.group_name %></a></td>
-                <td><%= item.specialty %></td>
-            </tr>
-            <% }); %>
+            <% if(items.length > 0) { %>
+                <% _.each(items, function(item) { %>
+                <tr>
+                    <td><a href="#" class="group" data-id="<%= item.group_id %>"><%= item.group_name %></a></td>
+                    <td><%= item.specialty %></td>
+                </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="2">По данному запросу ничего не найдено</td>
+                </tr>
+            <% } %>
             </tbody>
         </table>
     <% } if(extraProps.roleKey === 3 || extraProps.roleKey == 4) { %>
@@ -45,16 +57,22 @@
         </tr>
         </thead>
         <tbody>
-        <% _.each(items, function(item) { %>
-        <tr>
-            <% if(item.group_id) { %>
-                <td><a href="#" class="group" data-id="<%= item.group_id %>"><%= item.group_name %></a></td>
-            <% } else { %>
-                <td><%= item.group_name %></td>
-            <% } %>
-            <td><%= item.specialty %></td>
-        </tr>
-        <% }); %>
+        <% if(items.length > 0) { %>
+            <% _.each(items, function(item) { %>
+            <tr>
+                <% if(item.group_id) { %>
+                    <td><a href="#" class="group" data-id="<%= item.group_id %>"><%= item.group_name %></a></td>
+                <% } else { %>
+                    <td><%= item.group_name %></td>
+                <% } %>
+                <td><%= item.specialty %></td>
+            </tr>
+            <% }); %>
+        <% } else { %>
+            <tr>
+                <td colspan="2">По данному запросу ничего не найдено</td>
+            </tr>
+        <% } %>
         </tbody>
     </table>
     <% } %>

@@ -19,6 +19,7 @@ app.module('subjects.editableList', function(list, app) {
 
         events: {
             'change .grades': 'setChangedGrade',
+            'click .cancel': 'cancelEditing',
             'click .save_changes': 'saveChanges'
         },
 
@@ -46,6 +47,13 @@ app.module('subjects.editableList', function(list, app) {
             }
         },
 
+        cancelEditing: function(e) {
+            var currRoute = Backbone.history.fragment;
+
+            e.preventDefault();
+            Backbone.history.navigate(currRoute.substr(0, currRoute.length - 5), true);
+        },
+
         saveChanges: function(e) {
             var currRoute = Backbone.history.fragment,
                 data = {
@@ -53,7 +61,6 @@ app.module('subjects.editableList', function(list, app) {
                 };
 
             e.preventDefault();
-            //TODO ajax doesn't work
             $.ajax({
                 type: 'POST',
                 processData: false,

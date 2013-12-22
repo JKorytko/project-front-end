@@ -24,9 +24,10 @@ app.module('breadcrumbs', function(breadcrumbs, app) {
                 $input = $target.siblings('input'),
                 searchWord = $input.val();
 
-            //TODO: add validation
             e.preventDefault();
-            Backbone.history.navigate(searchType.substring(1) + '/search/' + searchWord, true);
+            if(searchWord.length !== 1) {
+                Backbone.history.navigate(searchType.substring(1) + '/search/' + searchWord, true);
+            }
         }
     });
 
@@ -46,6 +47,7 @@ app.module('breadcrumbs', function(breadcrumbs, app) {
     var setBreadcrumbs = function() {
         var args = Array.prototype.slice.call(arguments),
             breadcrumbs = [],
+            tempArr,
             i, l;
 
         if(requestDone) {
@@ -63,9 +65,11 @@ app.module('breadcrumbs', function(breadcrumbs, app) {
                             _.where(mappingModel.get(args[i].secondMappingProp), {id: args[i].secondMappingIndex})[0].name;
                     }
                     else {
-                        //temp = TODO bug breadcrumbs
-                        breadcrumbs[i].url = args[i].url;
-                        breadcrumbs[i].name = _.where(mappingModel.get(args[i].mappingProp), {id: args[i].mappingIndex})[0].name;
+                        tempArr = _.where(mappingModel.get(args[i].mappingProp), {id: args[i].mappingIndex});
+                        if(tempArr.length > 0) {
+                            breadcrumbs[i].url = args[i].url;
+                            breadcrumbs[i].name = _.where(mappingModel.get(args[i].mappingProp), {id: args[i].mappingIndex})[0].name;
+                        }
                     }
                 }
             }

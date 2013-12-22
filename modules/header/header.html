@@ -13,27 +13,29 @@
             </li>
             </ul>
 
-            <% if(!login) { %>
-                <ul class="nav navbar-nav navbar-right">
-                    <form class="navbar-form navbar-right">
-                        <div class="form-group">
-                            <input id="login-input" type="text" placeholder="Логин" value="julia_korytko" class="form-control">
+            <% if(!isNew) { %>
+                <% if(!login) { %>
+                    <ul class="nav navbar-nav navbar-right">
+                        <form class="navbar-form navbar-right">
+                            <div class="form-group">
+                                <input id="login-input" type="text" placeholder="Логин" value="brdm" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input id="password-input" type="password" placeholder="Пароль" value="1" class="form-control">
+                            </div>
+                            <button id="sign-in" class="btn btn-primary">Войти</button>
+                        </form>
+                    </ul>
+                <% } else { %>
+                    <ul class="nav navbar-nav navbar-right">
+                        <div class="navbar-form ">
+                            <div class="form-group">
+                                <strong id="login-label"><%= login %></strong>
+                            </div>
+                            <button id="sign-out" class="btn btn-primary">Выйти</button>
                         </div>
-                        <div class="form-group">
-                            <input id="password-input" type="password" placeholder="Пароль" value="1" class="form-control">
-                        </div>
-                        <button id="sign-in" class="btn btn-primary">Войти</button>
-                    </form>
-                </ul>
-            <% } else { %>
-                <ul class="nav navbar-nav navbar-right">
-                    <div class="navbar-form ">
-                        <div class="form-group">
-                            <strong id="login-label"><%= login %></strong>
-                        </div>
-                        <button id="sign-out" class="btn btn-primary">Выйти</button>
-                    </div>
-                </ul>
+                    </ul>
+                <% } %>
             <% } %>
         </div>
     </div>

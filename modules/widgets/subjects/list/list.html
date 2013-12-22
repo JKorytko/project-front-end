@@ -42,15 +42,22 @@
                     <th>Dead-line</th>
                 </tr>
                 </thead>
-                <tbody>
-                <% for(var i = 0; i < modulesNum; i++) { %>
-                <tr>
-                    <td><%= 'M' + (i+1) %></td>
-                    <td><%= items[0].moduls[i] ? items[0].moduls[i].module_name : null %></td>
-                    <td><%= items[0].moduls[i] ? items[0].moduls[i].date : null %></td>
-                </tr>
+                <% if(items[0]) { %>
+                    <tbody>
+                    <% for(var i = 0; i < modulesNum; i++) { %>
+                    <tr>
+                        <td><%= 'M' + (i+1) %></td>
+                        <td><%= items[0].moduls[i] ? items[0].moduls[i].module_name : null %></td>
+                        <td><%= items[0].moduls[i] ? items[0].moduls[i].date : null %></td>
+                    </tr>
+                    <% } %>
+                    <tr>
+                        <td>-</td>
+                        <td><%= items[0].moduls[modulesNum] ? items[0].moduls[modulesNum].module_name : null %></td>
+                        <td><%= items[0].moduls[modulesNum] ? items[0].moduls[modulesNum].date : null %></td>
+                    </tr>
+                    </tbody>
                 <% } %>
-                </tbody>
             </table>
         </div>
     <% } %>

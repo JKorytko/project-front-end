@@ -1,7 +1,7 @@
 app.module('header', function(header, app) {
     'use strict';
 
-    var model = new Backbone.Model();
+    var model = new Backbone.Model({isNew: true});
 
     var View = Marionette.ItemView.extend({
         template: 'modules/header/header.html',
@@ -17,6 +17,13 @@ app.module('header', function(header, app) {
             'click #sign-out': 'logout'
         },
 
+        wrongLoginPass: function() {
+            this.$el.find('form').addClass('error');
+            this.$el.find('form input').one('focus', function(e) {
+                $(e.currentTarget).closest('form').removeClass('error');
+            });
+        },
+
         login: function(e) {
             var self = this,
                 login = this.$el.find('#login-input').val(),
@@ -27,19 +34,19 @@ app.module('header', function(header, app) {
                 dataType: 'JSON',
                 url: app.mainUrl + '/users/getUsers.php?login=' + login + '&password=' + password,
                 success: function(data) {
-                    //TODO: add validation, errors input
 
                     if(data.login) {
                         window.location.reload();
+                    } else {
+                        self.wrongLoginPass();
                     }
+
                 }
             });
             e.preventDefault();
         },
 
         logout: function(e) {
-            var self = this;
-
             $.ajax({
                 type: 'GET',
                 url: app.mainUrl + '/users/logout.php',
@@ -49,50 +56,10 @@ app.module('header', function(header, app) {
             });
             e.preventDefault();
         }
-
-        //TODO: check commented logic
-        /*
-        login: function(e) {
-            var self = this,
-                login = this.$el.find('#login-input').val(),
-                password = this.$el.find('#password-input').val();
-
-            $.ajax({
-                type: 'GET',
-                dataType: 'JSON',
-                url: app.mainUrl + '/users/getUsers.php?login=' + login + '&password=' + password,
-                success: function(data) {
-                    //TODO: add validation, errors input
-
-                    if(data.login) {
-                        self.model.set({login: data.login});
-                        app.mainRouter.controller[app.mainRouter.currentCallbackName](); //refresh current widget
-                    }
-                    else {
-                        //self.model.set({login: null});
-                    }
-                }
-            });
-            e.preventDefault();
-        },
-
-        logout: function(e) {
-            var self = this;
-
-            $.ajax({
-                type: 'GET',
-                url: app.mainUrl + '/users/logout.php',
-                success: function() {
-                    self.model.set({login: null});
-                    app.mainRouter.controller[app.mainRouter.currentCallbackName](); //refresh current widget
-                }
-            });
-            e.preventDefault();
-        }
-        */
     });
 
     app.on('start', function() {
+        app.headerRegion.show(new View());
         //checking user's role request
         $.ajax({
             type: 'GET',
@@ -101,13 +68,12 @@ app.module('header', function(header, app) {
             success: function(data) {
 
                 if(data.extraProps.login) {
-                    model.set({login: data.extraProps.login});
+                    model.set({login: data.extraProps.login, isNew: false});
                 }
                 else {
-                    model.set({login: null});
+                    model.set({login: null, isNew: false});
                 }
 
-                app.headerRegion.show(new View());
             }
         });
     });
