@@ -31,10 +31,11 @@ app.module('subjects.editableList', function(list, app) {
             var $target = $(e.target),
                 $accept = this.$el.find('.save_changes'),
                 moduleID = $target.closest('select').data('module-id'),
-                tempArr = _.where(this.changedGradesArr, {moduleID: moduleID}),
+                studentID = $target.closest('tr').data('student-id'),
+                tempArr = _.where(this.changedGradesArr, {moduleID: moduleID, studendID: studentID}),
                 tempObj = {
                     moduleID: moduleID,
-                    studendID: $target.closest('tr').data('student-id'),
+                    studendID: studentID,
                     groupID: $target.closest('table').data('group-id'),
                     grade: $target.val()
                 };
@@ -45,6 +46,7 @@ app.module('subjects.editableList', function(list, app) {
             } else {
                 this.changedGradesArr.push(tempObj);
             }
+            console.warn(this.changedGradesArr)
         },
 
         cancelEditing: function(e) {
