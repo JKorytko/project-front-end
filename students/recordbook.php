@@ -3,7 +3,13 @@ include('../connection.php');
 header('Content-Type: application/json; charset=utf-8');
 mysql_query('SET NAMES utf8');
 $groupId = $_GET['groupId'];
+$groupId = addslashes($groupId);
+$groupId = htmlspecialchars($groupId);
+$groupId = stripslashes($groupId);
 $studentId = $_GET['studentId'];
+$studentId = addslashes($studentId);
+$studentId = htmlspecialchars($studentId);
+$studentId = stripslashes($studentId);
 if ((($_SESSION['student_id']) == $studentId) || ($_SESSION['role'] == 4)) {
     $queryGroup = "Select * from groups where group_id=" . $groupId;
     $result = mysql_query($queryGroup);

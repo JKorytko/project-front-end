@@ -3,9 +3,9 @@ include '../connection.php';
 header('Content-Type: application/json; charset=utf-8');
 mysql_query('SET NAMES utf8');
 session_start();
-$login = $_GET['login'];
-$password = $_GET['password'];
-$user = mysql_query("SELECT * FROM lectors WHERE lector_login='$login' AND lector_password='$password'");
+$login = htmlspecialchars($_GET['login']);
+$password = htmlspecialchars($_GET['password']);
+$user = mysql_query("SELECT * FROM lectors WHERE lector_login='".$login."' AND lector_password='".$password."'");
 $id_user = mysql_fetch_array($user);
 if (!empty($id_user['lector_id'])) //РАСПРЕДЕЛЕНИЕ ПРАВ ДОСТУПА
 {
